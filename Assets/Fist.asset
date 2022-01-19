@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc8e8ee469818b49a88cf1434210d79, type: 3}
+  m_Name: Fist
+  m_EditorClassIdentifier: 
+  _id: 0
+  _title: Fist
+  _type: 0
+  _vew: {fileID: 1475658301620378882, guid: 3c7dbfbf994496747b7a1bf5000df6ea, type: 3}
+  _damage: 1
+  _animationOverrideController: {fileID: 22100000, guid: b7fd4f82c66356a489f8a89c50253195,
+    type: 2}
