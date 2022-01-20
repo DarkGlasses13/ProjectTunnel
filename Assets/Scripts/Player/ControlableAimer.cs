@@ -9,12 +9,8 @@ namespace Assets.Scripts
         [SerializeField] private LineRenderer _aimLine;
         [SerializeField] [Range(1, 10)] private int _aimLineLenght;
 
-        private Camera _camera;
-
         private void Awake()
         {
-            _camera = Camera.main;
-            Attack.OnAttack.AddListener(LookAttack);
             InputHandler.OnAimInputDown.AddListener(ShowAimLine);
             InputHandler.OnAimInput.AddListener(Aim);
             InputHandler.OnAimInputUp.AddListener(HideAimLine);
@@ -26,11 +22,6 @@ namespace Assets.Scripts
                 LookMotion();
         }
 
-        private void LookAttack()
-        {
-            Look(InputHandler.LastAimInput, _aimRotationSpeed);
-        }
-
         private void Aim()
         {
             float rayOffsetY = 0.1f;
@@ -40,13 +31,11 @@ namespace Assets.Scripts
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, _aimLineLenght))
             {
-                Vector3 direction = hitInfo.point - rayOrigin;
                 _aimLine.SetPosition(0, ray.origin);
                 _aimLine.SetPosition(1, hitInfo.point);
             }
             else
             {
-                Vector3 direction = ray.direction * _aimLineLenght;
                 _aimLine.SetPosition(0, ray.origin);
                 _aimLine.SetPosition(1, (ray.origin + ray.direction * _aimLineLenght));
             }
@@ -60,6 +49,16 @@ namespace Assets.Scripts
         private void HideAimLine()
         {
             _aimLine.gameObject.SetActive(false);
+        }
+
+        public void ContinuousLook()
+        {
+            Look(InputHandler.AimInput, _aimRotationSpeed);
+        }
+
+        public void SingleLook()
+        {
+            Look(InputHandler.LastAimInput, _aimRotationSpeed);
         }
 
         private void LookMotion()

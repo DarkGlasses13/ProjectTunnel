@@ -18,14 +18,7 @@ namespace Assets.Scripts
 
         private void Sell(Item item)
         {
-            switch (item.Type)
-            {
-                case ItemType.Weapon:
 
-                    break;
-                case ItemType.Armor:
-                    break;
-            }
         }
     }
 }

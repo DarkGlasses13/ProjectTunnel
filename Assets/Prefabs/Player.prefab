@@ -424,7 +424,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _set: {fileID: 11400000, guid: 0788612d85929a3489b64516796b75bd, type: 2}
-  _weapon: {fileID: 0}
   _hand: {fileID: 3839695310502959345}
 --- !u!114 &9072200484087614200
 MonoBehaviour:

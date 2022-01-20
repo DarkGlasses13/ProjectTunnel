@@ -2,35 +2,43 @@
 
 namespace Assets.Scripts
 {
-    [RequireComponent(typeof(Animator), typeof(ControlableAttacker))]
+    [RequireComponent(typeof(Animator), typeof(ControlableAttacker), typeof(ControlableAimer))]
     public class Equiper : MonoBehaviour
     {
         [SerializeField] private EquipmentSet _set;
-        [SerializeField] private Weapon _weapon;
         [SerializeField] private Transform _hand;
 
-        private Animator _animator;
         private ControlableAttacker _attacker;
+        private ControlableAimer _aimer;
 
-        public Weapon Weapon => _weapon;
+        public Weapon EquipedWeapon { get; private set; }
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
             _attacker = GetComponent<ControlableAttacker>();
-            Equip();
+            _aimer = GetComponent<ControlableAimer>();
         }
 
-        public void Set(EquipmentSet set)
+        private void Start()
         {
-            _set = set;
+            Equip();
         }
 
         private void Equip()
         {
-            _weapon = _set.Weapon;
-            Instantiate(_weapon.Vew, _hand);
-            _attacker.OverrideAttackAnimation(_weapon.AnimatorOverrideController);
+            EquipedWeapon = _set.Weapon;
+            _attacker.SetAttack(EquipedWeapon);
+            Instantiate(EquipedWeapon.Vew.gameObject, _hand);
+
+            switch (EquipedWeapon.AttackType)
+            {
+                case AttackType.Single:
+                    Attack.OnAttack.AddListener(_aimer.SingleLook);
+                    break;
+                case AttackType.Continuous:
+                    Attack.OnAttack.AddListener(_aimer.ContinuousLook);
+                    break;
+            }
         }
     }
 }
