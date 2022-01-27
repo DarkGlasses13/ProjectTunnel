@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abff75dac316ed94ea0e98c574b636b5, type: 3}
   m_Name: PlayerEquipment
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 11400000, guid: 3af655451ebb4ae479be440e78af24ab, type: 2}
+  _weapon: {fileID: 11400000, guid: ad4763482e276764e9e23909d4a7745a, type: 2}

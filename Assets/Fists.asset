@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _title: Fists
-  _icon: {fileID: 0}
-  _vew: {fileID: 4127917280450808017, guid: 3c7dbfbf994496747b7a1bf5000df6ea, type: 3}
-  _damage: 1
-  _attackOverride: {fileID: 22100000, guid: b7fd4f82c66356a489f8a89c50253195, type: 2}
+  _icon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  _prefab: {fileID: 1475658301620378882, guid: 3c7dbfbf994496747b7a1bf5000df6ea, type: 3}
+  _damage: 5
+  _weaponType: 1
+  _attackOverride: {fileID: 0}

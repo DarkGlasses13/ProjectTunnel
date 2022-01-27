@@ -2,9 +2,12 @@
 
 namespace Assets.Scripts
 {
-    [CreateAssetMenu(menuName = "Weapons/Fists", fileName = "New Fists")]
-    public class Fists : Single
+    [CreateAssetMenu(menuName = "Weapon/Fists", fileName = "New Fists")]
+    public class Fists : Weapon
     {
-
+        public Fists()
+        {
+            AttackType = AttackType.Continuous;
+        }
     }
 }
