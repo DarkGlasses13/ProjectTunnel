@@ -5,7 +5,7 @@ namespace Assets.Scripts
 {
     public class PlayerCameraModel : Model<PlayerCameraConfig>
     {
-        public Action<Vector3> OnPositionChanged;
+        public Action<Vector3, int> OnPositionChanged;
 
         private Vector3 _position;
         private int _moveSpeed;
@@ -20,7 +20,7 @@ namespace Assets.Scripts
         public void SetNewPosition(Vector3 newPosition)
         {
             _position = newPosition;
-            OnPositionChanged?.Invoke(newPosition);
+            OnPositionChanged?.Invoke(_position, _moveSpeed);
         }
     }
 }

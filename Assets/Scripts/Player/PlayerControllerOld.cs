@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(CharacterController), typeof(Animator))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerControllerOld : MonoBehaviour
     {
         public Action OnMove;
 
