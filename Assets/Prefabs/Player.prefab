@@ -246,10 +246,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6872634362931502936}
+  - component: {fileID: 3138350690091835420}
   - component: {fileID: 6838858675597469999}
   - component: {fileID: 6872634362931502934}
-  - component: {fileID: 6872634362931502937}
-  - component: {fileID: 3837752243789800137}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -274,6 +273,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &3138350690091835420
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6872634362931502939}
+  m_Enabled: 1
 --- !u!95 &6838858675597469999
 Animator:
   serializedVersion: 3
@@ -311,33 +318,6 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &6872634362931502937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6872634362931502939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bff9d941488b6e40884921c9f218304, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 5
---- !u!114 &3837752243789800137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6872634362931502939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b9b09a34d33514086aa103914d51f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _set: {fileID: 11400000, guid: 0788612d85929a3489b64516796b75bd, type: 2}
-  _hand: {fileID: 3362784973729585264}
 --- !u!1 &6872634363363141433
 GameObject:
   m_ObjectHideFlags: 0

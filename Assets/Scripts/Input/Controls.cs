@@ -37,6 +37,15 @@ namespace Assets.Scripts
                     ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""2b37300a-a841-485a-b158-af8f034c29ce"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""NormalizeVector2"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -105,6 +114,17 @@ namespace Assets.Scripts
                     ""action"": ""Motion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c333a86-c2aa-4108-a11d-def014c8e880"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -153,6 +173,7 @@ namespace Assets.Scripts
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Motion = m_Player.FindAction("Motion", throwIfNotFound: true);
+            m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -213,11 +234,13 @@ namespace Assets.Scripts
         private readonly InputActionMap m_Player;
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Motion;
+        private readonly InputAction m_Player_Aim;
         public struct PlayerActions
         {
             private @Controls m_Wrapper;
             public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Motion => m_Wrapper.m_Player_Motion;
+            public InputAction @Aim => m_Wrapper.m_Player_Aim;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -230,6 +253,9 @@ namespace Assets.Scripts
                     @Motion.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMotion;
                     @Motion.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMotion;
                     @Motion.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMotion;
+                    @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                    @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                    @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -237,6 +263,9 @@ namespace Assets.Scripts
                     @Motion.started += instance.OnMotion;
                     @Motion.performed += instance.OnMotion;
                     @Motion.canceled += instance.OnMotion;
+                    @Aim.started += instance.OnAim;
+                    @Aim.performed += instance.OnAim;
+                    @Aim.canceled += instance.OnAim;
                 }
             }
         }
@@ -271,6 +300,7 @@ namespace Assets.Scripts
         public interface IPlayerActions
         {
             void OnMotion(InputAction.CallbackContext context);
+            void OnAim(InputAction.CallbackContext context);
         }
     }
 }
