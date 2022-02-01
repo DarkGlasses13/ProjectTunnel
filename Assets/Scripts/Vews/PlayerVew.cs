@@ -7,7 +7,6 @@ namespace Assets.Scripts
     [RequireComponent(typeof(CharacterController))]
     public class PlayerVew : Vew
     {
-        public Action OnMove;
         public Action<Vector2> OnMotionInput;
 
         private Controls _controls;
@@ -27,20 +26,18 @@ namespace Assets.Scripts
         public void UpdateMotion(Vector3 updatedMotion)
         {
             _characterController.Move(updatedMotion);
-            OnMove.Invoke();
         }
 
         private void CheckInput()
         {
             if (_motionInput != Vector2.zero)
-            {
                 OnMotionInput?.Invoke(_motionInput);
-            }
         }
 
         private void SetMotionInput(InputAction.CallbackContext callbackContext) => _motionInput = callbackContext.ReadValue<Vector2>();
 
-        private void ResetMotionInput() => _motionInput = Vector2.zero;
+
+        private void ResetMotionInput() => _motionInput = Vector2.zero; 
 
         private void OnDisable()
         {

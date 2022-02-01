@@ -17,7 +17,7 @@ namespace Assets.Scripts
 
         private void ChangePosition(Vector3 playerPosition)
         {
-            Vector3 newPosition = new Vector3(0, 30, playerPosition.z - 10);
+            Vector3 newPosition = playerPosition + _vew.Offset;
             _model.SetNewPosition(newPosition);
         }
 
