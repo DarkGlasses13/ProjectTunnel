@@ -8,7 +8,7 @@ namespace Assets.Scripts
         public Action<Vector3> OnMotionChanged;
 
         private Vector3 _motion;
-        private Vector3 _lookDirection;
+        private Quaternion _lookRotation;
 
         public int MoveSpeed { get; private set; }
         public int RotationSpeed { get; private set; }
