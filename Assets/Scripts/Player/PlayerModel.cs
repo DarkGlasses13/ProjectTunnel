@@ -5,6 +5,7 @@ namespace Assets.Scripts
 {
     public class PlayerModel : Model<PlayerConfig>
     {
+        
         public Action<Vector3> OnMotionChanged;
 
         private Vector3 _motion;
@@ -26,6 +27,5 @@ namespace Assets.Scripts
             _motion = newMotion;
             OnMotionChanged.Invoke(_motion);
         }
-
     }
 }

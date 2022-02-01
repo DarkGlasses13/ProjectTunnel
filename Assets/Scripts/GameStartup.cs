@@ -11,6 +11,7 @@ namespace Assets.Scripts
         [Header("World")]
         [SerializeField] private GameConfig _gameConfig;
         [SerializeField] private Transform _worldParent;
+        [SerializeField] private ItemDatabase _itemDatabase;
 
         [Header("Player")]
         [SerializeField] private PlayerConfig _playerConfig;
@@ -22,6 +23,7 @@ namespace Assets.Scripts
 
         private void Awake()
         {
+            _itemDatabase.Sort();
             PlayerModel playerModel = new PlayerModel(_playerConfig);
             PlayerController playerController = new PlayerController(playerModel, _playerView);
             _playerView.SetController(playerController);

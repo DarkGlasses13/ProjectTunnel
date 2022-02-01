@@ -138,7 +138,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &60706408
 RectTransform:
@@ -268,7 +268,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &188849607
 RectTransform:
@@ -323,7 +323,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &550498909
 MonoBehaviour:
@@ -339,11 +339,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameConfig: {fileID: 11400000, guid: aa2576ee3efd6a446aef9dc605cd9c45, type: 2}
   _worldParent: {fileID: 1544675914}
+  _itemDatabase: {fileID: 11400000, guid: 5e8a622c6c1a28f489fab7293e4a911f, type: 2}
   _playerConfig: {fileID: 11400000, guid: 1dda60fa80a2dad4786c573a29c3b7e1, type: 2}
-  _playerView: {fileID: 0}
+  _playerView: {fileID: 1054554704}
   _playerCameraConfig: {fileID: 11400000, guid: 34152acefc32ada4b82775c57f63d7d4,
     type: 2}
-  _playerCameraView: {fileID: 0}
+  _playerCameraView: {fileID: 2016325025}
 --- !u!4 &550498910
 Transform:
   m_ObjectHideFlags: 0
@@ -662,7 +663,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &1330971848
 RectTransform:
@@ -810,7 +811,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1469059601
 Transform:
@@ -878,7 +879,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &1533592125
 RectTransform:
@@ -1187,6 +1188,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2016325025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 314626794494330220, guid: d025b3b7ac7adf5429fb6e6830ed7c77,
+    type: 3}
+  m_PrefabInstance: {fileID: 2144471809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db48b33f6d8b4a84ba32ebe5720fcf05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2040500440
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,9 @@ namespace Assets.Scripts
     [RequireComponent(typeof(CharacterController))]
     public class PlayerView : View
     {
+        public Action OnEnableControl;
+        public Action OnDisableControl;
+
         public Action<Vector2> OnMotionInput;
 
         private Controls _controls;
@@ -17,10 +20,23 @@ namespace Assets.Scripts
         {
             _controls = new Controls();
             _characterController = GetComponent<CharacterController>();
+            EnableControl();
+        }
+
+        public void EnableControl()
+        {
+            Debug.Log("Player Control Was Enabled");
             _controls.Enable();
             _controls.Player.Motion.performed += callbackContext => SetMotionInput(callbackContext);
             _controls.Player.Motion.canceled += callbackContext => ResetMotionInput();
             GameStartup.OnFixedUpdate += CheckInput;
+        }
+
+        public void DisableControl()
+        {
+            Debug.Log("Player Control Was Disabled");
+            _controls.Disable();
+            GameStartup.OnFixedUpdate -= CheckInput;
         }
 
         public void UpdateMotion(Vector3 updatedMotion)
@@ -41,8 +57,7 @@ namespace Assets.Scripts
 
         private void OnDisable()
         {
-            _controls.Disable();
-            GameStartup.OnFixedUpdate -= CheckInput;
+            DisableControl();
         }
     }
 }
