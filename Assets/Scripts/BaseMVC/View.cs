@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    public abstract class Vew : MonoBehaviour
+    public abstract class View : MonoBehaviour, IView
     {
         protected IController _controller;
 

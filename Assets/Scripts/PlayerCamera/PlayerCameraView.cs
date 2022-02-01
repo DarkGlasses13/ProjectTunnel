@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class PlayerCameraVew : Vew
+    public class PlayerCameraView : View
     {
         public Action<Vector3> OnInOffset;
 
-        [SerializeField] private PlayerVew _playerVew;
+        [SerializeField] private PlayerView _playerView;
 
         public Vector3 Offset { get; private set; }
 
@@ -19,8 +19,8 @@ namespace Assets.Scripts
 
         private void ReadPlayerPosition()
         {
-            if (transform.position != _playerVew.transform.position + Offset)
-                OnInOffset?.Invoke(_playerVew.transform.position);
+            if (transform.position != _playerView.transform.position + Offset)
+                OnInOffset?.Invoke(_playerView.transform.position);
         }
 
         public void UpdatePosition(Vector3 updatedPosition, int speed)

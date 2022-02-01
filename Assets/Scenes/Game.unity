@@ -340,10 +340,10 @@ MonoBehaviour:
   _gameConfig: {fileID: 11400000, guid: aa2576ee3efd6a446aef9dc605cd9c45, type: 2}
   _worldParent: {fileID: 1544675914}
   _playerConfig: {fileID: 11400000, guid: 1dda60fa80a2dad4786c573a29c3b7e1, type: 2}
-  _playerVew: {fileID: 1054554704}
+  _playerView: {fileID: 0}
   _playerCameraConfig: {fileID: 11400000, guid: 34152acefc32ada4b82775c57f63d7d4,
     type: 2}
-  _playerCameraVew: {fileID: 675339464}
+  _playerCameraView: {fileID: 0}
 --- !u!4 &550498910
 Transform:
   m_ObjectHideFlags: 0
@@ -364,18 +364,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2144471809}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &675339464 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 314626794494330220, guid: d025b3b7ac7adf5429fb6e6830ed7c77,
-    type: 3}
-  m_PrefabInstance: {fileID: 2144471809}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db48b33f6d8b4a84ba32ebe5720fcf05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &958356597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,19 +1291,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 314626794494330220, guid: d025b3b7ac7adf5429fb6e6830ed7c77,
         type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 1257213030}
-    - target: {fileID: 314626794494330220, guid: d025b3b7ac7adf5429fb6e6830ed7c77,
-        type: 3}
-      propertyPath: _playerVew
+      propertyPath: _playerView
       value: 
       objectReference: {fileID: 1054554704}
-    - target: {fileID: 314626794494330220, guid: d025b3b7ac7adf5429fb6e6830ed7c77,
-        type: 3}
-      propertyPath: _playerController
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3122200212882422290, guid: d025b3b7ac7adf5429fb6e6830ed7c77,
         type: 3}
       propertyPath: m_RootOrder
@@ -1375,11 +1353,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 3122200212882422295, guid: d025b3b7ac7adf5429fb6e6830ed7c77,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d025b3b7ac7adf5429fb6e6830ed7c77, type: 3}

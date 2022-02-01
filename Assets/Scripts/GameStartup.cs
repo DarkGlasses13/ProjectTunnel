@@ -14,21 +14,21 @@ namespace Assets.Scripts
 
         [Header("Player")]
         [SerializeField] private PlayerConfig _playerConfig;
-        [SerializeField] private PlayerVew _playerVew;
+        [SerializeField] private PlayerView _playerView;
 
         [Header("Player Camera")]
         [SerializeField] private PlayerCameraConfig _playerCameraConfig;
-        [SerializeField] private PlayerCameraVew _playerCameraVew;
+        [SerializeField] private PlayerCameraView _playerCameraView;
 
         private void Awake()
         {
             PlayerModel playerModel = new PlayerModel(_playerConfig);
-            PlayerController playerController = new PlayerController(playerModel, _playerVew);
-            _playerVew.SetController(playerController);
+            PlayerController playerController = new PlayerController(playerModel, _playerView);
+            _playerView.SetController(playerController);
 
             PlayerCameraModel playerCameraModel = new PlayerCameraModel(_playerCameraConfig);
-            PlayerCameraController playerCameraController = new PlayerCameraController(playerCameraModel, _playerCameraVew);
-            _playerCameraVew.SetController(playerCameraController);
+            PlayerCameraController playerCameraController = new PlayerCameraController(playerCameraModel, _playerCameraView);
+            _playerCameraView.SetController(playerCameraController);
         }
 
         private void Update()

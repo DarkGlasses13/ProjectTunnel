@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerVew : Vew
+    public class PlayerView : View
     {
         public Action<Vector2> OnMotionInput;
 

@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    public class PlayerAttacker : MonoBehaviour
+    public interface IView
     {
 
     }

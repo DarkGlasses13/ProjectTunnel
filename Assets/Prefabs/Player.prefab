@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6872634362513562247}
   m_Layer: 0
-  m_Name: Vew
+  m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
