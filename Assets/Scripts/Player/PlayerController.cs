@@ -1,30 +1,62 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 namespace Assets.Scripts
 {
     public class PlayerController : Controller<PlayerModel, PlayerView, PlayerConfig>
     {
+        public static UnityEvent OnEnablePlayerControl = new UnityEvent();
+        public static UnityEvent OnDisablePlayerControl = new UnityEvent();
+
+        public Action OnEnableControl;
+        public Action OnDisableControl;
+
+        private Controls _controls;
+        private Vector2 _motionInput;
+
         public PlayerController(PlayerModel model, PlayerView view) : base(model, view) 
         {
-            _view.OnMotionInput += ChangeMotion;
-            _model.OnMotionChanged += DisplayMotion;
+            _controls = new Controls();
+            _controls.Enable();
+            EnableControl();
+            _model.OnMotionChanged += _view.UpdateMotion;
+        }
+        
+        private void ReadMotionInput(InputAction.CallbackContext context) => _motionInput = context.ReadValue<Vector2>();
+
+        private void ResetMotionInput() => _motionInput = Vector2.zero;
+
+        private void ChangeMotion()
+        {
+            if (_motionInput != Vector2.zero)
+            {
+                Vector3 motion = new Vector3(_motionInput.x, 0, _motionInput.y);
+                _model.SetNewMotion(motion * _model.MoveSpeed * Time.fixedDeltaTime);
+            } 
         }
 
-        private void DisplayMotion(Vector3 updatedMotion)
+        public void EnableControl()
         {
-            _view.UpdateMotion(updatedMotion);
+            Debug.Log("Player Control Was Enabled");
+            _controls.Enable();
+            _controls.Player.Motion.performed += context => ReadMotionInput(context);
+            _controls.Player.Motion.canceled += context => ResetMotionInput();
+            GameStartup.OnFixedUpdate += ChangeMotion;
         }
 
-        private void ChangeMotion(Vector2 motionInput)
+        public void DisableControl()
         {
-            Vector3 motion = new Vector3(motionInput.x, 0, motionInput.y);
-            _model.SetNewMotion(motion * _model.MoveSpeed * Time.fixedDeltaTime);
+            Debug.Log("Player Control Was Disabled");
+            _controls.Disable();
+            _model.OnMotionChanged -= _view.UpdateMotion;
+            GameStartup.OnFixedUpdate -= ChangeMotion;
         }
 
         ~PlayerController()
         {
-            _view.OnMotionInput -= ChangeMotion;
-            _model.OnMotionChanged -= DisplayMotion;
+            _controls.Disable();
         }
     }
 }
