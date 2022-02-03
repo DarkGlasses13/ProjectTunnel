@@ -7,7 +7,6 @@ namespace Assets.Scripts
     {
         public Action<Vector3, int> OnPositionChanged;
 
-        private Vector3 _offset;
         private Vector3 _position;
         private int _moveSpeed;
 

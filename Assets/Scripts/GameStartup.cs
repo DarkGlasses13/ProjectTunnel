@@ -26,11 +26,9 @@ namespace Assets.Scripts
             _itemDatabase.Sort();
             PlayerModel playerModel = new PlayerModel(_playerConfig);
             PlayerController playerController = new PlayerController(playerModel, _playerView);
-            _playerView.SetController(playerController);
 
             PlayerCameraModel playerCameraModel = new PlayerCameraModel(_playerCameraConfig);
-            PlayerCameraController playerCameraController = new PlayerCameraController(playerCameraModel, _playerCameraView);
-            _playerCameraView.SetController(playerCameraController);
+            PlayerCameraController playerCameraController = new PlayerCameraController(playerCameraModel, _playerCameraView, _playerView.transform);
         }
 
         private void Update()
