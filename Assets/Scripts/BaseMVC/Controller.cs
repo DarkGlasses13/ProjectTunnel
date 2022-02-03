@@ -11,6 +11,7 @@ namespace Assets.Scripts
         {
             _model = model;
             _view = view;
+            _view.SetController(this);
         }
     }
 }

@@ -36,7 +36,6 @@ namespace Assets.Scripts
 
         private void SetMotionInput(InputAction.CallbackContext callbackContext) => _motionInput = callbackContext.ReadValue<Vector2>();
 
-
         private void ResetMotionInput() => _motionInput = Vector2.zero; 
 
         private void OnDisable()
