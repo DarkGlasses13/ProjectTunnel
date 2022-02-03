@@ -168,7 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60105b4ec155f741b425a947b81ea55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewPos: {fileID: 0}
+  _hand: {fileID: 7908462703663734970}
+  _pistol: {fileID: 2040591984159933854, guid: 9011a0a90df2b4746ad864be49d29208, type: 3}
+  _uzi: {fileID: -5274491681145303999, guid: 889cd3cb9ecbed3449490bea5a60466d, type: 3}
 --- !u!1 &6872634362513562246
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +263,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7b9828c5d7441264e9ed261cdd58d2f0, type: 2}
+  - {fileID: 2100000, guid: 64163a7d7075fde449ebb38e3a97197b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

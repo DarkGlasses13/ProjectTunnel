@@ -6,24 +6,21 @@ namespace Assets.Scripts
 {
     public class WeaponController : Controller<WeaponModel, WeaponView, WeaponConfig>
     {
+        public delegate Item ItemOperation(int id);
+        public ItemOperation itemOperation;
         public WeaponController(WeaponModel model, WeaponView view) : base(model, view)
         {
-            _model.OnWeaponChange += DisplayWeapon;
-            _model.OnPosChange += TransferWeapon;
+            _model.OnWeaponChange += _view.ChangeWeapon;
+            _view.OnGetId += SetNewWeapon;
         }
-
-        private void DisplayWeapon(Weapon weapon)
+        public void SetNewWeapon(int weaponId)
         {
-            _view.ChangeWeapon(weapon);
-        }
-        private void TransferWeapon(Vector3 weaponPos)
-        {
-            _view.UpdateWeaponPos(weaponPos);
+            Weapon weapon = itemOperation?.Invoke(weaponId) as Weapon;
+            _model.SetWeapon(weapon);
         }
         ~WeaponController()
         {
-            _model.OnWeaponChange -= DisplayWeapon;
-            _model.OnPosChange -= TransferWeapon;
+            _model.OnWeaponChange -= _view.ChangeWeapon;
         }
     }
 }

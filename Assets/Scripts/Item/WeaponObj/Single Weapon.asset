@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Single Weapon
   m_EditorClassIdentifier: 
   _price: 0
-  _id: 1
+  _id: 0
   _itemName: Glock-17
   _description: 
   _icon: {fileID: 0}

@@ -37,10 +37,10 @@ namespace Assets.Scripts
             PlayerCameraController playerCameraController = new PlayerCameraController(playerCameraModel, _playerCameraView);
 
             WeaponModel weaponModel = new WeaponModel(_weaponConfig);
-            weaponModel.itemOperation += _database.GetItem;
-            OnWeaponSet += weaponModel.SetNewWeapon;
             WeaponController weaponController = new WeaponController(weaponModel, _weaponView);
-            _weaponView.InitBulletPull(_weaponConfig.BulletCount, _weaponConfig.BulletPrefab);
+            weaponController.itemOperation += _database.GetItem;
+            OnWeaponSet += weaponController.SetNewWeapon;
+            //_weaponView.InitBulletPull(_weaponConfig.BulletCount, _weaponConfig.BulletPrefab);
         }
 
         private void Update()

@@ -6,33 +6,47 @@ namespace Assets.Scripts
 {
     public class WeaponView : View
     {
-        [SerializeField] Transform viewPos;
+        public Action<int> OnGetId;
+
+        [SerializeField] Transform _hand;
+        [SerializeField] WeaponObj _pistol;
+        [SerializeField] WeaponObj _uzi;
+
         private List<Bullet> bulletPull = new List<Bullet>();
+        private List<WeaponObj> weaponPull = new List<WeaponObj>();
 
         private void OnEnable()
         {
-
+            WeaponObj pistolObj = Instantiate(_pistol, _hand);
+            WeaponObj uziObj = Instantiate(_uzi, _hand);
+            pistolObj.gameObject.SetActive(false);
+            uziObj.gameObject.SetActive(false);
+            weaponPull.Add(pistolObj);
+            weaponPull.Add(uziObj);
         }
         public void ChangeWeapon(Weapon weapon)
         {
-            Debug.Log(weapon.ItemName);
-        }
-        public void InitBulletPull(int pullSize, Bullet prefab)
-        {
-            for (int i = 0; i < pullSize; i++)
+            for (int i = 0; i < weaponPull.Count; i++)
             {
-                GameObject instantiateBullet = Instantiate(prefab.gameObject, transform);
-                instantiateBullet.SetActive(false);
-                bulletPull.Add(instantiateBullet.GetComponent<Bullet>());
+                weaponPull[i].gameObject.SetActive(false);
+                if (i == weapon.ID)
+                {
+                    weaponPull[i].gameObject.SetActive(true);
+                }
             }
         }
-        public void DisplayFire()
+        //public void InitBulletPull(int pullSize, Bullet prefab)
+        //{
+        //    for (int i = 0; i < pullSize; i++)
+        //    {
+        //        GameObject instantiateBullet = Instantiate(prefab.gameObject, transform);
+        //        instantiateBullet.SetActive(false);
+        //        bulletPull.Add(instantiateBullet.GetComponent<Bullet>());
+        //    }
+        //}
+        public void GetWeaponId(int id)
         {
-
-        }
-        public void UpdateWeaponPos(Vector3 weaponPos)
-        {
-            viewPos.position = weaponPos;
+            OnGetId?.Invoke(id);
         }
         private void OnDisable()
         {
