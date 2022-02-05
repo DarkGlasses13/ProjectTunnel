@@ -9,30 +9,24 @@ namespace Assets.Scripts
         public Action<int> OnGetId;
 
         [SerializeField] Transform _hand;
-        [SerializeField] WeaponObj _pistol;
-        [SerializeField] WeaponObj _uzi;
 
+        private WeaponObj _previoslyWeaponModel;
         private List<Bullet> bulletPull = new List<Bullet>();
-        private List<WeaponObj> weaponPull = new List<WeaponObj>();
 
         private void OnEnable()
         {
-            WeaponObj pistolObj = Instantiate(_pistol, _hand);
-            WeaponObj uziObj = Instantiate(_uzi, _hand);
-            pistolObj.gameObject.SetActive(false);
-            uziObj.gameObject.SetActive(false);
-            weaponPull.Add(pistolObj);
-            weaponPull.Add(uziObj);
+
         }
         public void ChangeWeapon(Weapon weapon)
         {
-            for (int i = 0; i < weaponPull.Count; i++)
+            WeaponObj model = Instantiate(weapon.Model, _hand);
+            if (_previoslyWeaponModel == null)
             {
-                weaponPull[i].gameObject.SetActive(false);
-                if (i == weapon.ID)
-                {
-                    weaponPull[i].gameObject.SetActive(true);
-                }
+                _previoslyWeaponModel = model;
+            } else
+            {
+                Destroy(_previoslyWeaponModel.gameObject);
+                _previoslyWeaponModel = model;
             }
         }
         //public void InitBulletPull(int pullSize, Bullet prefab)
