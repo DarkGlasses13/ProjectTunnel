@@ -11,7 +11,7 @@ namespace Assets.Scripts
 
         public Shotgun()
         {
-            _attackScheme = new ShotAttackScheme();
+            _weaponScheme = new ShotAttackScheme();
         }
     }
 }

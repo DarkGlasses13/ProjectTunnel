@@ -7,11 +7,12 @@ namespace Assets.Scripts
     {
         public static Action OnUpdate;
         public static Action OnFixedUpdate;
+        public static Action<int> OnWeaponSet;
 
         [Header("World")]
         [SerializeField] private GameConfig _gameConfig;
         [SerializeField] private Transform _worldParent;
-        [SerializeField] private ItemDatabase _itemDatabase;
+        [SerializeField] private ItemDataBase _database;
 
         [Header("Player")]
         [SerializeField] private PlayerConfig _playerConfig;
@@ -21,14 +22,25 @@ namespace Assets.Scripts
         [SerializeField] private PlayerCameraConfig _playerCameraConfig;
         [SerializeField] private PlayerCameraView _playerCameraView;
 
+        [Header("Player Weapon")]
+        [SerializeField] private WeaponConfig _weaponConfig;
+        [SerializeField] private WeaponView _weaponView;
+
         private void Awake()
         {
-            _itemDatabase.Sort();
+            _database.Sort();
+
             PlayerModel playerModel = new PlayerModel(_playerConfig);
             PlayerController playerController = new PlayerController(playerModel, _playerView);
 
             PlayerCameraModel playerCameraModel = new PlayerCameraModel(_playerCameraConfig);
             PlayerCameraController playerCameraController = new PlayerCameraController(playerCameraModel, _playerCameraView, _playerView.transform);
+
+            WeaponModel weaponModel = new WeaponModel(_weaponConfig);
+            WeaponController weaponController = new WeaponController(weaponModel, _weaponView);
+            weaponController.itemOperation += _database.GetItem;
+            OnWeaponSet += weaponController.SetNewWeapon;
+            //_weaponView.InitBulletPull(_weaponConfig.BulletCount, _weaponConfig.BulletPrefab);
         }
 
         private void Update()
@@ -40,5 +52,6 @@ namespace Assets.Scripts
         {
             OnFixedUpdate?.Invoke();
         }
+
     }
 }
