@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts
 {
@@ -9,26 +10,31 @@ namespace Assets.Scripts
         public static Action OnFixedUpdate;
         public static Action<int> OnWeaponSet;
 
-        [Header("World")]
-        [SerializeField] private GameConfig _gameConfig;
-        [SerializeField] private Transform _worldParent;
-        [SerializeField] private ItemDataBase _database;
-
-        [Header("Player")]
-        [SerializeField] private PlayerConfig _playerConfig;
-        [SerializeField] private PlayerView _playerView;
-
-        [Header("Player Camera")]
+        [Header("Config")]
         [SerializeField] private PlayerCameraConfig _playerCameraConfig;
+        [SerializeField] private PlayerConfig _playerConfig;
+        [SerializeField] private WeaponConfig _weaponConfig;
+        [SerializeField] private GameConfig _gameConfig;
+
+        [Header("View")]
+        private PlayerView _playerView;
+        private WeaponView _weaponView;
         [SerializeField] private PlayerCameraView _playerCameraView;
 
-        [Header("Player Weapon")]
-        [SerializeField] private WeaponConfig _weaponConfig;
-        [SerializeField] private WeaponView _weaponView;
+        [Header("World")]
+        [SerializeField] private Transform _worldParent;
+        [SerializeField] private WeaponDataBase _weaponDataBase;
 
-        private void Awake()
+        [Inject]
+        public void Construct(PlayerView player, WeaponView weapon)
         {
-            _database.Sort();
+            _playerView = player;
+            _weaponView = weapon;
+            Init();
+        }
+        private void Init()
+        {
+            _weaponDataBase.Sort();
 
             PlayerModel playerModel = new PlayerModel(_playerConfig);
             PlayerController playerController = new PlayerController(playerModel, _playerView);
@@ -38,7 +44,7 @@ namespace Assets.Scripts
 
             WeaponModel weaponModel = new WeaponModel(_weaponConfig);
             WeaponController weaponController = new WeaponController(weaponModel, _weaponView);
-            weaponController.itemOperation += _database.GetItem;
+            weaponController.weaponOperation += _weaponDataBase.GetWeapon;
             OnWeaponSet += weaponController.SetNewWeapon;
             //_weaponView.InitBulletPull(_weaponConfig.BulletCount, _weaponConfig.BulletPrefab);
         }

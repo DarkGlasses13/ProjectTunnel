@@ -17,7 +17,7 @@ MonoBehaviour:
   _itemName: Uzi
   _description: 
   _icon: {fileID: 0}
-  _damage: 0
+  _damage: 5
   _weaponModel: {fileID: 7801099034048126696, guid: 889cd3cb9ecbed3449490bea5a60466d,
     type: 3}
   _capacity: 0

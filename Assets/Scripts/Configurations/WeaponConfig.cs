@@ -5,10 +5,10 @@ namespace Assets.Scripts
     [CreateAssetMenu(menuName = "Config/Weapon", fileName = "New Weapon Config")]
     public class WeaponConfig : Config
     {
-        //[SerializeField] [Range(1, 100)] private int bulletCount;
-        //[SerializeField] Bullet _bulletPrefab;
+        [SerializeField] float _multipleDamage;
+        [SerializeField] float _weaponRecoil;
 
-        //public int BulletCount => bulletCount;
-        //public Bullet BulletPrefab => _bulletPrefab;
+        public float MultipleDamage => _multipleDamage;
+        public float WeaponRecoil => _weaponRecoil;
     }
 }
