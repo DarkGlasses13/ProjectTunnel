@@ -1,20 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Item : ScriptableObject
+    public class Item : ScriptableObject, IComparable
     {
-        [SerializeField] protected int _price;
         [SerializeField] protected int _id;
-        [SerializeField] protected string _itemName;
-        [SerializeField] [TextArea(1, 100)] protected string _description;
-        [SerializeField] protected Sprite _icon;
+        [SerializeField] protected string _title;
+        [SerializeField] protected int _price;
+        [SerializeField] [TextArea(5, 500)] protected string _description;
 
-        public int Prise => _price;
         public int ID => _id;
-        public string ItemName => _itemName;
+        public string Title => _title;
+        public int Price => _price;
         public string Description => _description;
-        public Sprite Icon => _icon;
+
         public int CompareTo(object obj)
         {
             Item item = obj as Item;

@@ -6,27 +6,27 @@ namespace Assets.Scripts
 {
     public class SceneSwitcher : MonoBehaviour
     {
-        public static UnityEvent OnStartGame = new UnityEvent();
-        public static UnityEvent OnEscapeGame = new UnityEvent();
+        public static UnityEvent OnEnterTunnel = new UnityEvent();
+        public static UnityEvent OnEscapeTunnel = new UnityEvent();
 
-        private const int _hub = 1;
-        private const int _game = 0;
+        private const int _hubSceneIndex = 0;
+        private const int _gameSceneIndex = 1;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
         }
 
-        public void StartGame()
+        public void EnterTunnel()
         {
-            SceneManager.LoadScene(_game);
-            OnStartGame.Invoke();
+            SceneManager.LoadScene(_gameSceneIndex);
+            OnEnterTunnel.Invoke();
         }
 
-        public void EscapeGame()
+        public void EscapeTunnel()
         {
-            SceneManager.LoadScene(_hub);
-            OnEscapeGame.Invoke();
+            SceneManager.LoadScene(_hubSceneIndex);
+            OnEscapeTunnel.Invoke();
         }
     }
 }

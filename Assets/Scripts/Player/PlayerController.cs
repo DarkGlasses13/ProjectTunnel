@@ -10,9 +10,6 @@ namespace Assets.Scripts
         public static UnityEvent OnEnablePlayerControl = new UnityEvent();
         public static UnityEvent OnDisablePlayerControl = new UnityEvent();
 
-        public Action OnEnableControl;
-        public Action OnDisableControl;
-
         private Controls _controls;
         private Vector2 _motionInput;
 
@@ -21,7 +18,7 @@ namespace Assets.Scripts
             _controls = new Controls();
             _controls.Enable();
             EnableControl();
-            _model.OnMotionChanged += _view.UpdateMotion;
+            _model.OnMotionChanged += _view.DisplayMotion;
         }
         
         private void ReadMotionInput(InputAction.CallbackContext context) => _motionInput = context.ReadValue<Vector2>();
@@ -44,14 +41,16 @@ namespace Assets.Scripts
             _controls.Player.Motion.performed += context => ReadMotionInput(context);
             _controls.Player.Motion.canceled += context => ResetMotionInput();
             GameStartup.OnFixedUpdate += ChangeMotion;
+            OnEnablePlayerControl.Invoke();
         }
 
         public void DisableControl()
         {
             Debug.Log("Player Control Was Disabled");
             _controls.Disable();
-            _model.OnMotionChanged -= _view.UpdateMotion;
+            _model.OnMotionChanged -= _view.DisplayMotion;
             GameStartup.OnFixedUpdate -= ChangeMotion;
+            OnDisablePlayerControl.Invoke();
         }
 
         ~PlayerController()

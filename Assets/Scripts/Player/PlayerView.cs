@@ -13,9 +13,6 @@ namespace Assets.Scripts
             _characterController = GetComponent<CharacterController>();
         }
 
-        public void UpdateMotion(Vector3 updatedMotion)
-        {
-            _characterController.Move(updatedMotion);
-        }
+        public void DisplayMotion(Vector3 updatedMotion) => _characterController.Move(updatedMotion);
     }
 }

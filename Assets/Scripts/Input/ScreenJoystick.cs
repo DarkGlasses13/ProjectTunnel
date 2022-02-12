@@ -41,8 +41,8 @@ namespace Assets.Scripts
                 )
             )
             {
-                inputPosition.x /= _background.rectTransform.sizeDelta.x;
-                inputPosition.y /= _background.rectTransform.sizeDelta.y;
+                inputPosition.x = inputPosition.x / _background.rectTransform.sizeDelta.x;
+                inputPosition.y = inputPosition.y / _background.rectTransform.sizeDelta.y;
 
                 Vector2 handlePosition = - Vector2.ClampMagnitude
                 (
@@ -66,6 +66,5 @@ namespace Assets.Scripts
             _handle.rectTransform.anchoredPosition = Vector3.zero;
             SendValueToControl(Vector2.zero);
         }
-
     }
 }
