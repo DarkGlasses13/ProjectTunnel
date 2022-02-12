@@ -10,6 +10,11 @@ namespace Assets.Scripts
 
         private Dictionary<int, Item> _itemBase = new Dictionary<int, Item>();
 
+        public ItemDatabase()
+        {
+            Sort();
+        }
+
         public void Sort()
         {
             _itemHeap.Sort();

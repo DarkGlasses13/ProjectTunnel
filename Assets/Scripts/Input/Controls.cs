@@ -26,7 +26,7 @@ namespace Assets.Scripts
     ""name"": ""ControlsEditor"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""Character"",
             ""id"": ""a8226ef7-18a7-4437-a8b1-d4f6e00b2c0b"",
             ""actions"": [
                 {
@@ -170,10 +170,10 @@ namespace Assets.Scripts
         }
     ]
 }");
-            // Player
-            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Motion = m_Player.FindAction("Motion", throwIfNotFound: true);
-            m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+            // Character
+            m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
+            m_Character_Motion = m_Character.FindAction("Motion", throwIfNotFound: true);
+            m_Character_Aim = m_Character.FindAction("Aim", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -230,34 +230,34 @@ namespace Assets.Scripts
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Player
-        private readonly InputActionMap m_Player;
-        private IPlayerActions m_PlayerActionsCallbackInterface;
-        private readonly InputAction m_Player_Motion;
-        private readonly InputAction m_Player_Aim;
-        public struct PlayerActions
+        // Character
+        private readonly InputActionMap m_Character;
+        private ICharacterActions m_CharacterActionsCallbackInterface;
+        private readonly InputAction m_Character_Motion;
+        private readonly InputAction m_Character_Aim;
+        public struct CharacterActions
         {
             private @Controls m_Wrapper;
-            public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Motion => m_Wrapper.m_Player_Motion;
-            public InputAction @Aim => m_Wrapper.m_Player_Aim;
-            public InputActionMap Get() { return m_Wrapper.m_Player; }
+            public CharacterActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Motion => m_Wrapper.m_Character_Motion;
+            public InputAction @Aim => m_Wrapper.m_Character_Aim;
+            public InputActionMap Get() { return m_Wrapper.m_Character; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-            public void SetCallbacks(IPlayerActions instance)
+            public static implicit operator InputActionMap(CharacterActions set) { return set.Get(); }
+            public void SetCallbacks(ICharacterActions instance)
             {
-                if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+                if (m_Wrapper.m_CharacterActionsCallbackInterface != null)
                 {
-                    @Motion.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMotion;
-                    @Motion.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMotion;
-                    @Motion.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMotion;
-                    @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                    @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                    @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                    @Motion.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMotion;
+                    @Motion.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMotion;
+                    @Motion.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMotion;
+                    @Aim.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAim;
+                    @Aim.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAim;
+                    @Aim.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAim;
                 }
-                m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+                m_Wrapper.m_CharacterActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @Motion.started += instance.OnMotion;
@@ -269,7 +269,7 @@ namespace Assets.Scripts
                 }
             }
         }
-        public PlayerActions @Player => new PlayerActions(this);
+        public CharacterActions @Character => new CharacterActions(this);
         private int m_TouchscreenSchemeIndex = -1;
         public InputControlScheme TouchscreenScheme
         {
@@ -297,7 +297,7 @@ namespace Assets.Scripts
                 return asset.controlSchemes[m_GamepadSchemeIndex];
             }
         }
-        public interface IPlayerActions
+        public interface ICharacterActions
         {
             void OnMotion(InputAction.CallbackContext context);
             void OnAim(InputAction.CallbackContext context);

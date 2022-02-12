@@ -2,7 +2,7 @@
     "name": "ControlsEditor",
     "maps": [
         {
-            "name": "Player",
+            "name": "Character",
             "id": "a8226ef7-18a7-4437-a8b1-d4f6e00b2c0b",
             "actions": [
                 {
