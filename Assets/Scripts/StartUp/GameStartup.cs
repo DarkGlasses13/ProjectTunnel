@@ -1,14 +1,14 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Assets.Scripts
 {
-    public class GameStartup : MonoBehaviour
+    public class GameStartup : MonoBehaviour, IStartUp
     {
         public static Action OnUpdate;
         public static Action OnFixedUpdate;
-        public static Action<int> OnWeaponSet;
 
         [Header("Config")]
         [SerializeField] private PlayerCameraConfig _playerCameraConfig;
@@ -17,9 +17,9 @@ namespace Assets.Scripts
         [SerializeField] private GameConfig _gameConfig;
 
         [Header("View")]
+        [SerializeField] private PlayerCameraView _playerCameraView;
         private PlayerView _playerView;
         private WeaponView _weaponView;
-        [SerializeField] private PlayerCameraView _playerCameraView;
 
         [Header("World")]
         [SerializeField] private Transform _worldParent;
@@ -32,7 +32,7 @@ namespace Assets.Scripts
             _weaponView = weapon;
             Init();
         }
-        private void Init()
+        public void Init()
         {
             _weaponDataBase.Sort();
 
@@ -44,9 +44,6 @@ namespace Assets.Scripts
 
             WeaponModel weaponModel = new WeaponModel(_weaponConfig);
             WeaponController weaponController = new WeaponController(weaponModel, _weaponView);
-            weaponController.weaponOperation += _weaponDataBase.GetWeapon;
-            OnWeaponSet += weaponController.SetNewWeapon;
-            //_weaponView.InitBulletPull(_weaponConfig.BulletCount, _weaponConfig.BulletPrefab);
         }
 
         private void Update()
@@ -58,6 +55,5 @@ namespace Assets.Scripts
         {
             OnFixedUpdate?.Invoke();
         }
-
     }
 }

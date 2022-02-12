@@ -12,11 +12,16 @@ namespace Assets.Scripts
         {
             _model.OnWeaponChange += _view.ChangeWeapon;
             _view.OnGetId += SetNewWeapon;
+            _view.OnWeaponAttack += BulletInit;
         }
         public void SetNewWeapon(int weaponId)
         {
             var weapon = weaponOperation?.Invoke(weaponId);
             _model.SetWeapon(weapon);
+        }
+        public void BulletInit()
+        {
+            _model.AttackScheme.Attack();
         }
         ~WeaponController()
         {

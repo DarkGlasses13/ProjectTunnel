@@ -17,7 +17,9 @@ MonoBehaviour:
   _itemName: Glock-17
   _description: 
   _icon: {fileID: 0}
-  _damage: 0
+  _damage: 7
+  _bulletsPerShot: 3
+  _attackRate: 0
   _weaponModel: {fileID: 7365240330841028946, guid: 9011a0a90df2b4746ad864be49d29208,
     type: 3}
   _capacity: 0
