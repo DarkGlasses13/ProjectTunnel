@@ -41,8 +41,8 @@ namespace Assets.Scripts
                 )
             )
             {
-                inputPosition.x = inputPosition.x / _background.rectTransform.sizeDelta.x;
-                inputPosition.y = inputPosition.y / _background.rectTransform.sizeDelta.y;
+                inputPosition.x /= _background.rectTransform.sizeDelta.x;
+                inputPosition.y /= _background.rectTransform.sizeDelta.y;
 
                 Vector2 handlePosition = - Vector2.ClampMagnitude
                 (

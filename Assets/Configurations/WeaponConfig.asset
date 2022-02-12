@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b0031c015342c4c9c7b5da77f61b0c, type: 3}
   m_Name: WeaponConfig
   m_EditorClassIdentifier: 
+  _multipleDamage: 1
+  _weaponRecoil: 2

@@ -9,8 +9,8 @@ namespace Assets.Scripts
         public static UnityEvent OnStartGame = new UnityEvent();
         public static UnityEvent OnEscapeGame = new UnityEvent();
 
-        private const int _hub = 0;
-        private const int _game = 1;
+        private const int _hub = 1;
+        private const int _game = 0;
 
         private void Awake()
         {
