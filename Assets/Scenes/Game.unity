@@ -281,11 +281,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 550498910}
-  - {fileID: 1898217768}
   - {fileID: 1938700331}
   - {fileID: 1554253929}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &188849606
 GameObject:
@@ -352,7 +351,6 @@ GameObject:
   m_Component:
   - component: {fileID: 550498910}
   - component: {fileID: 550498909}
-  - component: {fileID: 550498911}
   m_Layer: 0
   m_Name: GameStartup
   m_TagString: Untagged
@@ -391,34 +389,6 @@ Transform:
   m_Father: {fileID: 149310680}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &550498911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550498908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e6589720da476459dc6dd71624b071, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers: []
-  _installerPrefabs: []
-  _parentNewObjectsUnderContext: 0
-  _editorReflectionBakingCoverageMode: 0
-  _buildsReflectionBakingCoverageMode: 0
-  _settings:
-    _ensureDeterministicDestructionOrderOnApplicationQuit: 0
-    _displayWarningWhenResolvingDuringInstall: 1
-    _validationRootResolveMethod: 0
-    _validationErrorResponse: 0
-    _signalSettings:
-      _defaultSyncMode: 0
-      _missingHandlerDefaultResponse: 2
-      _requireStrictUnsubscribe: 0
-      _defaultAsyncTickPriority: 1
 --- !u!4 &675339463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3122200212882422290, guid: d025b3b7ac7adf5429fb6e6830ed7c77, type: 3}
@@ -526,10 +496,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1499887044}
     m_Modifications:
-    - target: {fileID: 6872634362513562247, guid: 2635043333ce957428312daa45b652a7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6872634362931502936, guid: 2635043333ce957428312daa45b652a7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1001,7 +967,7 @@ Transform:
   - {fileID: 1469059601}
   - {fileID: 1499887044}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1554253928
 GameObject:
@@ -1013,6 +979,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1554253929}
   - component: {fileID: 1554253930}
+  - component: {fileID: 1554253931}
   m_Layer: 0
   m_Name: UpdateCacher
   m_TagString: Untagged
@@ -1032,7 +999,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 149310680}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1554253930
 MonoBehaviour:
@@ -1044,6 +1011,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e319b5348a60c14397ea70d7daf2cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1554253931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554253928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8715dd423e7eca745a78658fe0d4ff69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1568536708
@@ -1075,7 +1054,7 @@ Transform:
   m_Children:
   - {fileID: 1920649797}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1898217767
 GameObject:
@@ -1105,8 +1084,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 149310680}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1898217769
 MonoBehaviour:
@@ -1121,7 +1100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 1554253931}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1313,7 +1293,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 149310680}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2040500440
 GameObject:
