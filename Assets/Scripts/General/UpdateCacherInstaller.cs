@@ -12,10 +12,11 @@ namespace Assets.Scripts
         {
             _updateCacher = GetComponent<UpdateCacher>();
 
-            Container.
-                Bind<UpdateCacher>().
-                FromInstance(_updateCacher).
-                AsSingle();
+            Container
+                .Bind<UpdateCacher>()
+                .FromInstance(_updateCacher)
+                .AsSingle()
+                .NonLazy();
         }
     }
 }
