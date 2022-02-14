@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts
 {
     public class GameStartup : MonoBehaviour
     {
-        [Header("GENERAL")]
-        [SerializeField] private ActorSpawner _actorSpawner;
-
         [Header("CONFIGURATIONS")]
         [SerializeField] private GameConfig _gameConfig;
         [SerializeField] private CharacterConfig _characterConfig;
@@ -24,9 +22,10 @@ namespace Assets.Scripts
         [SerializeField] private Character _characterPrefab;
         [SerializeField] private PlayerCamera _playerCameraPrefab;
 
-        private void Start()
+        [Inject] private void Construct(CharacterFactory characterFactory, PlayerCameraFactory playerCameraFactory)
         {
-            _actorSpawner.SpawnCharacter(_characterPrefab, _characterConfig, _actorParent, _characterSpawnPoint.position);
+            Character character = characterFactory.Create(_characterPrefab, _characterConfig, _actorParent, _characterSpawnPoint.position);
+            playerCameraFactory.Create(_playerCameraPrefab, _playerCameraConfig, _actorParent, character);
         }
     }
 }

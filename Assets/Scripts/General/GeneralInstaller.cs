@@ -3,15 +3,17 @@ using Zenject;
 
 namespace Assets.Scripts
 {
-    [RequireComponent(typeof(UpdateCacher))]
-    public class UpdateCacherInstaller : MonoInstaller
+    public class GeneralInstaller : MonoInstaller
     {
-        private UpdateCacher _updateCacher;
+        [SerializeField] private UpdateCacher _updateCacher;
 
         public override void InstallBindings()
         {
-            _updateCacher = GetComponent<UpdateCacher>();
+            BindUpdateCacher();
+        }
 
+        private void BindUpdateCacher()
+        {
             Container
                 .Bind<UpdateCacher>()
                 .FromInstance(_updateCacher)
