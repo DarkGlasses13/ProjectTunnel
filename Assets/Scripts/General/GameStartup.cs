@@ -23,7 +23,7 @@ namespace Assets.Scripts
         [SerializeField] private PlayerCamera _playerCameraPrefab;
 
         [Inject]
-        private void Construct(CharacterFactory characterFactory, PlayerCameraFactory playerCameraFactory, ItemDatabase itemDatabase)
+        private void Construct(CharacterFactory characterFactory, PlayerCameraFactory playerCameraFactory)
         {
             Character character = characterFactory.Create(_characterPrefab, _characterConfig, _actorParent, _characterSpawnPoint.position);
             playerCameraFactory.Create(_playerCameraPrefab, _playerCameraConfig, _actorParent, character);

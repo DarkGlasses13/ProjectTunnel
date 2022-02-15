@@ -22,7 +22,7 @@ namespace Assets.Scripts
         public void EquipWeapon(int id)
         {
             _weapon = _itemDatabase.GetItem<Weapon>(id);
-            Instantiate(_weapon.Prefab.gameObject, _hand);
+            Instantiate(_weapon.Prefab.gameObject, _hand).GetComponent<Attacker>().SetAttackScheme(_weapon.AttackScheme);
         }
 
         public void RemoveValuable(int id) => _valuebles.Remove(id);

@@ -13,9 +13,9 @@ namespace Assets.Scripts
         private CharacterController _characterController;
         private Vector3 _motion;
 
-        [Inject] public void Construct(UpdateCacher updateCacher)
+        [Inject] private void Construct(Controls controls, UpdateCacher updateCacher)
         {
-            _controls = new Controls();
+            _controls = controls;
             _characterController = GetComponent<CharacterController>();
             _updateCacher = updateCacher;
         }

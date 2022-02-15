@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: CharacterConfig
   m_EditorClassIdentifier: 
   _equipedWeapon: {fileID: 11400000, guid: 5face2130b2cf5e4e98d05f1febfd1b1, type: 2}
+  _equipedArmor: {fileID: 0}

@@ -10,10 +10,7 @@ namespace Assets.Scripts
 
         private Dictionary<int, Item> _itemBase;
 
-        public void OnValidate()
-        {
-            Sort();
-        }
+        public void OnValidate() => Sort();
 
         public void Sort()
         {
