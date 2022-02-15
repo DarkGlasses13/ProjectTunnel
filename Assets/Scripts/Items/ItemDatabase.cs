@@ -8,24 +8,25 @@ namespace Assets.Scripts
     {
         [SerializeField] private List<Item> _itemHeap = new List<Item>();
 
-        private Dictionary<int, Item> _itemBase = new Dictionary<int, Item>();
+        private Dictionary<int, Item> _itemBase;
 
-        public ItemDatabase()
+        public void OnValidate()
         {
             Sort();
         }
 
         public void Sort()
         {
+            _itemBase = new Dictionary<int, Item>(_itemHeap.Count);
             _itemHeap.Sort();
 
             foreach (Item item in _itemHeap)
                 _itemBase.Add(item.ID, item);
         }
 
-        public Item GetItem(int id)
+        public T GetItem<T>(int id) where T: Item
         {
-            return _itemHeap[id];
+            return _itemBase[id] as T;
         }
     }
 }

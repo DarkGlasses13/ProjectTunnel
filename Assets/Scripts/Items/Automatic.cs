@@ -2,12 +2,12 @@
 
 namespace Assets.Scripts
 {
-    [CreateAssetMenu(menuName = "Item/Weapon/Automatic Weapon", fileName = "New Automatic Weapon")]
+    [CreateAssetMenu(menuName = "Item/Weapon/Automatic", fileName = "New Automatic Weapon")]
     public class Automatic : Firearm
     {
-        [SerializeField] [Range(1, 5)] protected int _fireRate;
+        [SerializeField] [Range(0.1f, 1)] protected float _fireRate;
 
-        public int FireRate => _fireRate;
+        public float FireRate => _fireRate;
 
         public Automatic()
         {

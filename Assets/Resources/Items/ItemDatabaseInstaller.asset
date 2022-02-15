@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a18125a980631944fb7143befb4d8e50, type: 3}
-  m_Name: CharacterConfig
+  m_Script: {fileID: 11500000, guid: 1106b4e7a6400e340a8aa2b9308726b1, type: 3}
+  m_Name: ItemDatabaseInstaller
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _rotationSpeed: 10

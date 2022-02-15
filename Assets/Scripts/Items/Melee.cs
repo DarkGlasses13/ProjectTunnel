@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    [CreateAssetMenu(menuName = "Item/Weapon/Melee Weapon", fileName = "New Melee Weapon")]
+    [CreateAssetMenu(menuName = "Item/Weapon/Melee", fileName = "New Melee Weapon")]
     public class Melee : Weapon
     {
         public Melee()
