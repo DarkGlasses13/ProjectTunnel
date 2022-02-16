@@ -15,11 +15,11 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Aim",
+                    "name": "Attack",
                     "type": "Value",
-                    "id": "2b37300a-a841-485a-b158-af8f034c29ce",
+                    "id": "d43bb4fe-d5b6-4bbe-b6c0-659ed2f0c151",
                     "expectedControlType": "Vector2",
-                    "processors": "NormalizeVector2",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 }
@@ -93,12 +93,12 @@
                 },
                 {
                     "name": "",
-                    "id": "8c333a86-c2aa-4108-a11d-def014c8e880",
+                    "id": "6820b8dd-59cf-44c2-97d5-9c8890a770a4",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Aim",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

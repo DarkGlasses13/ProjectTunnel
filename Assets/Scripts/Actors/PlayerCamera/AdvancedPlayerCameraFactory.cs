@@ -16,6 +16,7 @@ namespace Assets.Scripts
             {
                 PlayerCamera playerCamera = _container.InstantiatePrefabForComponent<PlayerCamera>(prefab.gameObject);
                 playerCamera.transform.SetParent(parent);
+                playerCamera.transform.position = character.transform.position;
                 playerCamera.SetCharacter(character);
                 return playerCamera;
             }

@@ -11,7 +11,7 @@ namespace Assets.Scripts
 
         public Automatic()
         {
-            _attackScheme = new ContinuousAttackScheme();
+            _attackScheme = new AutomaticAttackScheme(this);
         }
     }
 }

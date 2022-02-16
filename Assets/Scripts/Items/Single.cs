@@ -7,7 +7,7 @@ namespace Assets.Scripts
     {
         public Single()
         {
-            _attackScheme = new SingleAttackScheme();
+            _attackScheme = new SingleFireAttackScheme(this);
         }
     }
 }

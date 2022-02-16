@@ -5,18 +5,39 @@ namespace Assets.Scripts
 {
     public class GeneralInstaller : MonoInstaller
     {
-        [SerializeField] private UpdateCacher _updateCacher;
+        [SerializeField] private UpdateService _updateService;
+        [SerializeField] private CoroutineService _coroutineService;
 
         public override void InstallBindings()
         {
-            BindUpdateCacher();
+            BindControls();
+            BindUpdateService();
+            BindCoroutineService();
         }
 
-        private void BindUpdateCacher()
+        private void BindControls()
         {
             Container
-                .Bind<UpdateCacher>()
-                .FromInstance(_updateCacher)
+                .Bind<Controls>()
+                .FromInstance(new Controls())
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindUpdateService()
+        {
+            Container
+                .Bind<UpdateService>()
+                .FromInstance(_updateService)
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindCoroutineService()
+        {
+            Container
+                .Bind<CoroutineService>()
+                .FromInstance(_coroutineService)
                 .AsSingle()
                 .NonLazy();
         }
