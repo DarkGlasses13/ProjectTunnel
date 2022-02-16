@@ -21,7 +21,6 @@ namespace Assets.Scripts
         private void Equip(Character character, CharacterConfig config)
         {
             Inventory inventory = character.GetComponent<Inventory>();
-
             inventory.EquipWeapon(config.EquipedWeapon.ID);
         }
 

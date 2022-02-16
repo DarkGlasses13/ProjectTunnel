@@ -9,6 +9,7 @@ namespace Assets.Scripts
 
         public Controls Controls { get; private set; }
         public CoroutineService CoroutineService { get; private set; }
+        public BulletDealer BulletDealer { get; private set; }
 
         public void SetAttackScheme(IWeaponAttackScheme attackScheme)
         {
@@ -16,6 +17,8 @@ namespace Assets.Scripts
             _attackScheme = attackScheme;
             _attackScheme.Apply(this);
         }
+
+        public void SetBulletDealer(BulletDealer bulletDealer) => BulletDealer = bulletDealer;
 
         public void SetCoroutineService(CoroutineService coroutineService) => CoroutineService = coroutineService;
 

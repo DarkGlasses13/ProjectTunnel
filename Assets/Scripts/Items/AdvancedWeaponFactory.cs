@@ -16,6 +16,7 @@ namespace Assets.Scripts
             attacker.transform.localPosition = default;
             attacker.SetControls(_container.Resolve<Controls>());
             attacker.SetCoroutineService(_container.Resolve<CoroutineService>());
+            attacker.SetBulletDealer(_container.Resolve<BulletDealer>());
             attacker.SetAttackScheme(attackScheme);
             return attacker;
         }

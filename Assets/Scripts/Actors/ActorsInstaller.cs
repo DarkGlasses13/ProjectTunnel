@@ -7,6 +7,7 @@ namespace Assets.Scripts
     {
         public override void InstallBindings()
         {
+            BindBulletDealerFactory();
             BindCharacterFactory();
             BindPlayerCameraFactory();
         }
@@ -23,6 +24,13 @@ namespace Assets.Scripts
             Container
                 .BindFactory<Character, CharacterConfig, Transform, Vector3, Character, CharacterFactory>()
                 .FromFactory<AdvancedCharacterFactory>();
+        }
+
+        private void BindBulletDealerFactory()
+        {
+            Container
+                .BindFactory<BulletDealer, Bullet, Transform, BulletDealer, BulletDealerFactory>()
+                .FromFactory<AdvancedBulletDealerFactory>();
         }
     }
 }

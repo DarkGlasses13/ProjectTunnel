@@ -9,9 +9,6 @@ namespace Assets.Scripts
 
         public int BulletsPerShot => _bulletsPerShot;
 
-        public Shotgun()
-        {
-            _attackScheme = new ShotFireAttackScheme(this);
-        }
+        public Shotgun() => _attackScheme = new ShotFireAttackScheme(this);
     }
 }

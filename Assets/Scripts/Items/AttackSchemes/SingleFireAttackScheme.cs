@@ -2,11 +2,9 @@
 
 namespace Assets.Scripts
 {
-    public class SingleFireAttackScheme : IWeaponAttackScheme
+    public class SingleFireAttackScheme : WeaponAttackScheme<Single>, IWeaponAttackScheme
     {
-        private Single _weaponData;
-
-        public SingleFireAttackScheme(Single weaponData) => _weaponData = weaponData;
+        public SingleFireAttackScheme(Single weaponData) : base(weaponData) { }
 
         void IWeaponAttackScheme.Apply(Attacker attacker)
         {
