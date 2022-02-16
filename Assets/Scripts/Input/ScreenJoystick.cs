@@ -15,8 +15,6 @@ namespace Assets.Scripts
         [SerializeField] [Range(10, 100)] private float _handleMoveRadius;
         [SerializeField] [Range(0, 100)] private float _deadzone;
 
-        private Vector2 _startPosition;
-
         protected override string controlPathInternal 
         {
             get => _controlPath;
@@ -25,7 +23,7 @@ namespace Assets.Scripts
 
         void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
         {
-            _startPosition = eventData.position;
+
         }
 
         void IDragHandler.OnDrag(PointerEventData eventData)
@@ -53,7 +51,7 @@ namespace Assets.Scripts
 
                 if (handlePosition.magnitude < _deadzone)
                 {
-                    handlePosition = Vector2.zero;
+                    handlePosition = default;
                 }
 
                 _handle.rectTransform.anchoredPosition = handlePosition;
@@ -63,8 +61,8 @@ namespace Assets.Scripts
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
-            _handle.rectTransform.anchoredPosition = Vector3.zero;
-            SendValueToControl(Vector2.zero);
+            _handle.rectTransform.anchoredPosition = default;
+            SentDefaultValueToControl();
         }
     }
 }

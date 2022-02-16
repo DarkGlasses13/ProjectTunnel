@@ -7,10 +7,10 @@ namespace Assets.Scripts
     {
         [SerializeField] [Range(1, 10)] private float _duration;
 
-        private UpdateCacher _updateCacher;
+        private UpdateService _updateCacher;
         private Transform _character;
 
-        [Inject] private void Construct(UpdateCacher updateCacher)
+        [Inject] private void Construct(UpdateService updateCacher)
         {
             _updateCacher = updateCacher;
         }

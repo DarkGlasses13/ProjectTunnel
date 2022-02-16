@@ -8,12 +8,12 @@ namespace Assets.Scripts
     {
         [SerializeField] [Range(1, 10)] private float _moveSpeed;
 
-        private UpdateCacher _updateCacher;
+        private UpdateService _updateCacher;
         private Controls _controls;
         private CharacterController _characterController;
         private Vector3 _motion;
 
-        [Inject] private void Construct(Controls controls, UpdateCacher updateCacher)
+        [Inject] private void Construct(Controls controls, UpdateService updateCacher)
         {
             _controls = controls;
             _characterController = GetComponent<CharacterController>();

@@ -7,7 +7,7 @@ namespace Assets.Scripts
     {
         public Melee()
         {
-            _attackScheme = new SingleAttackScheme();
+            _attackScheme = new MeleeAttackScheme(this);
         }
     }
 }

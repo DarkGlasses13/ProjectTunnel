@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    public class UpdateCacher : MonoBehaviour
+    public class UpdateService : MonoBehaviour
     {
         public delegate void UpdatableMethod();
         public delegate void FixedUpdatableMethod();
