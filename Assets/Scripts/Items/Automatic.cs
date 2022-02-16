@@ -9,9 +9,6 @@ namespace Assets.Scripts
 
         public float FireRate => _fireRate;
 
-        public Automatic()
-        {
-            _attackScheme = new AutomaticAttackScheme(this);
-        }
+        public Automatic() => _attackScheme = new AutomaticAttackScheme(this);
     }
 }

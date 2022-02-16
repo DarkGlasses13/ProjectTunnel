@@ -20,8 +20,7 @@ namespace Assets.Scripts
             Container
                 .Bind<Controls>()
                 .FromInstance(new Controls())
-                .AsSingle()
-                .NonLazy();
+                .AsSingle();
         }
 
         private void BindUpdateService()
@@ -29,8 +28,7 @@ namespace Assets.Scripts
             Container
                 .Bind<UpdateService>()
                 .FromInstance(_updateService)
-                .AsSingle()
-                .NonLazy();
+                .AsSingle();
         }
 
         private void BindCoroutineService()
@@ -38,8 +36,7 @@ namespace Assets.Scripts
             Container
                 .Bind<CoroutineService>()
                 .FromInstance(_coroutineService)
-                .AsSingle()
-                .NonLazy();
+                .AsSingle();
         }
     }
 }

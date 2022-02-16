@@ -1,20 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Zenject;
 
 namespace Assets.Scripts
 {
-    public class AutomaticAttackScheme : IWeaponAttackScheme
+    public class AutomaticAttackScheme : WeaponAttackScheme<Automatic>, IWeaponAttackScheme
     {
-        private Automatic _weaponData;
         private CoroutineService _coroutineService;
         private Coroutine _automaticRoutine;
         private const float _attackDelay = 0.5f;
 
-        public AutomaticAttackScheme(Automatic weaponData)
-        {
-            _weaponData = weaponData;
-        }
+        public AutomaticAttackScheme(Automatic weaponData) : base(weaponData) { }
 
         void IWeaponAttackScheme.Apply(Attacker attacker)
         {

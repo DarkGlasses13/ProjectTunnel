@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627950158952503193}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -51,6 +51,8 @@ MonoBehaviour:
   _chunksParent: {fileID: 0}
   _actorParent: {fileID: 0}
   _characterSpawnPoint: {fileID: 0}
+  _bulletDealerPrefab: {fileID: 4061586722158584064, guid: 64071f6eb413bdf4aa5803d39e6fa99f, type: 3}
+  _bulletPrefab: {fileID: 5708257146975784137, guid: f0d2503666667eb46bafe4e8010838d4, type: 3}
   _characterPrefab: {fileID: 5859902457235512869, guid: 2635043333ce957428312daa45b652a7, type: 3}
   _playerCameraPrefab: {fileID: 7674707772504624109, guid: d025b3b7ac7adf5429fb6e6830ed7c77, type: 3}
 --- !u!114 &7627950158952503194

@@ -2,11 +2,9 @@
 
 namespace Assets.Scripts
 {
-    public class ShotFireAttackScheme : IWeaponAttackScheme
+    public class ShotFireAttackScheme : WeaponAttackScheme<Shotgun>, IWeaponAttackScheme
     {
-        private Shotgun _weaponData;
-
-        public ShotFireAttackScheme(Shotgun weaponData) => _weaponData = weaponData;
+        public ShotFireAttackScheme(Shotgun weaponData) : base(weaponData) { }
 
         void IWeaponAttackScheme.Apply(Attacker attacker)
         {

@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class MeleeAttackScheme : IWeaponAttackScheme
+    public class MeleeAttackScheme : WeaponAttackScheme<Melee>, IWeaponAttackScheme
     {
-        public MeleeAttackScheme(Melee weaponData)
-        {
-
-        }
+        public MeleeAttackScheme(Melee weaponData) : base(weaponData) { }
 
         void IWeaponAttackScheme.Apply(Attacker attacker)
         {
@@ -17,7 +13,7 @@ namespace Assets.Scripts
 
         public void Attack()
         {
-
+            Debug.Log("Melee Attack !");
         }
 
         void IWeaponAttackScheme.Cancel(Attacker attacker)
