@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01bf71762530f784db12aa5b78c7504a, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  _id: 2
+  _id: 1
   _title: "\u041E\u0431\u0440\u0435\u0437"
   _price: 10000
   _description: 

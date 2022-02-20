@@ -23,7 +23,11 @@ namespace Assets.Scripts
 
         public T GetItem<T>(int id) where T: Item
         {
-            return _itemBase[id] as T;
+            if (_itemBase.ContainsKey(id))
+            {
+                return _itemBase[id] as T;
+            }
+            return new Item() as T;
         }
     }
 }
