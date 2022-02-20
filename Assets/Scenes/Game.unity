@@ -2114,7 +2114,7 @@ PrefabInstance:
       objectReference: {fileID: 2065967972}
     - target: {fileID: 7627950158952503193, guid: ec01fcfb5ba4b3b439cf9c73572c32ee, type: 3}
       propertyPath: m_Name
-      value: GameStartup
+      value: ReidStartup
       objectReference: {fileID: 0}
     - target: {fileID: 7627950158952503195, guid: ec01fcfb5ba4b3b439cf9c73572c32ee, type: 3}
       propertyPath: m_RootOrder

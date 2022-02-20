@@ -1,18 +1,15 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Attack : StateMachineBehaviour
 {
-    public static UnityEvent OnStartAttack = new UnityEvent();
-    public static UnityEvent OnAttack = new UnityEvent();
-    public static UnityEvent OnEndAttack = new UnityEvent();
-
-    public static bool IsAttack { get; private set; }
+    public static Action OnStartAttack;
+    public static Action OnAttack;
+    public static Action OnEndAttack;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         OnStartAttack.Invoke();
-        IsAttack = true;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -23,6 +20,5 @@ public class Attack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         OnEndAttack.Invoke();
-        IsAttack = false;
     }
 }

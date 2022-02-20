@@ -12,7 +12,7 @@ namespace Assets.Scripts
         public Character Create(Character prefab, CharacterConfig config, Transform parent, Vector3 position)
         {
             Character character =
-                GetSpawnedCharacter(prefab, parent, position);
+                GetSpawnedInstance(prefab, parent, position);
                 Equip(character, config);
 
             return character;
@@ -24,12 +24,9 @@ namespace Assets.Scripts
             inventory.EquipWeapon(config.EquipedWeapon.ID);
         }
 
-        private Character GetSpawnedCharacter(Character prefab, Transform parent, Vector3 position)
+        private Character GetSpawnedInstance(Character prefab, Transform parent, Vector3 position)
         {
-            Character character = _container.InstantiatePrefabForComponent<Character>(prefab.gameObject);
-            character.transform.SetParent(parent);
-            character.transform.position = position;
-            return character;
+            return _container.InstantiatePrefabForComponent<Character>(prefab.gameObject, position, Quaternion.identity, parent);
         }
     }
 }

@@ -11,17 +11,18 @@ namespace Assets.Scripts
         public CoroutineService CoroutineService { get; private set; }
         public BulletDealer BulletDealer { get; private set; }
 
+        [Inject] private void Construct(Controls controls, CoroutineService coroutineService, BulletDealer bulletDealer)
+        {
+            Controls = controls;
+            CoroutineService = coroutineService;
+            BulletDealer = bulletDealer;
+        }
+
         public void SetAttackScheme(IWeaponAttackScheme attackScheme)
         {
             _attackScheme?.Cancel(this);
             _attackScheme = attackScheme;
-            _attackScheme.Apply(this);
+            _attackScheme?.Apply(this);
         }
-
-        public void SetBulletDealer(BulletDealer bulletDealer) => BulletDealer = bulletDealer;
-
-        public void SetCoroutineService(CoroutineService coroutineService) => CoroutineService = coroutineService;
-
-        public void SetControls(Controls controls) => Controls = controls;
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class AutomaticAttackScheme : WeaponAttackScheme<Automatic>, IWeaponAttackScheme
+    public class AutomaticAttackScheme : FirearmAttackSceme<Automatic>, IWeaponAttackScheme
     {
         private CoroutineService _coroutineService;
         private Coroutine _automaticRoutine;
@@ -16,11 +16,13 @@ namespace Assets.Scripts
             _coroutineService = attacker.CoroutineService;
             attacker.Controls.Character.Attack.started += callbackContext => StartAttacking();
             attacker.Controls.Character.Attack.canceled += callbackContext => StopAttacking();
+            _bulletDealer = attacker.BulletDealer;
+            _bulletDealer.InitPool(_weaponData.Bullet, attacker.transform);
         }
 
         public void Attack()
         {
-            Debug.Log("Automatic Attack !");
+            _bulletDealer.GetBullet();
         }
 
         private void StartAttacking() => _automaticRoutine = _coroutineService.StartRoutine(AutomaticRoutine());
