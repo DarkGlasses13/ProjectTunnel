@@ -23,3 +23,4 @@ MonoBehaviour:
   _reloaringTime: 2
   _bullet: {fileID: 3938568067295194219, guid: f0d2503666667eb46bafe4e8010838d4, type: 3}
   _bulletsPerShot: 5
+  _spreadAngle: 30

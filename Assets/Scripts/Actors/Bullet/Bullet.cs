@@ -37,11 +37,11 @@ namespace Assets.Scripts
             if (_currentLifetime >= _lifetime) Hit();
         }
 
-        private void Accelerate() => transform.position += Vector3.forward * _speed * Time.fixedDeltaTime;
+        private void Accelerate() => transform.Translate(Vector3.forward * _speed * Time.fixedDeltaTime);
 
         public void ClearTrail() => _trailRenderer.Clear();
 
-        private void Hit() => OnHit.Invoke(this);
+        private void Hit() => OnHit?.Invoke(this);
 
         private void OnTriggerEnter(Collider other) => Hit();
 
