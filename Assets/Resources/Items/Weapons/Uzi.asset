@@ -21,4 +21,5 @@ MonoBehaviour:
   _damage: 5
   _capacity: 20
   _reloaringTime: 2
+  _bullet: {fileID: 3938568067295194219, guid: f0d2503666667eb46bafe4e8010838d4, type: 3}
   _fireRate: 0.1

@@ -49,10 +49,7 @@ namespace Assets.Scripts
                     _handleMoveRadius
                 );
 
-                if (handlePosition.magnitude < _deadzone)
-                {
-                    handlePosition = default;
-                }
+                if (handlePosition.magnitude < _deadzone) handlePosition = default;
 
                 _handle.rectTransform.anchoredPosition = handlePosition;
                 SendValueToControl(handlePosition);

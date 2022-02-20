@@ -19,7 +19,7 @@ namespace Assets.Scripts
         {
             Container
                 .Bind<Controls>()
-                .FromInstance(new Controls())
+                .FromNew()
                 .AsSingle();
         }
 
@@ -29,6 +29,8 @@ namespace Assets.Scripts
                 .Bind<UpdateService>()
                 .FromInstance(_updateService)
                 .AsSingle();
+
+            Container.QueueForInject(_updateService);
         }
 
         private void BindCoroutineService()
@@ -37,6 +39,8 @@ namespace Assets.Scripts
                 .Bind<CoroutineService>()
                 .FromInstance(_coroutineService)
                 .AsSingle();
+
+            Container.QueueForInject(_coroutineService);
         }
     }
 }

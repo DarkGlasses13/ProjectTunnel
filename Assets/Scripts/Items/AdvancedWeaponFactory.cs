@@ -11,12 +11,7 @@ namespace Assets.Scripts
 
         public Attacker Create(EquipmentView prefab, Transform hand, IWeaponAttackScheme attackScheme)
         {
-            Attacker attacker = _container.InstantiatePrefabForComponent<Attacker>(prefab.gameObject);
-            attacker.transform.SetParent(hand);
-            attacker.transform.localPosition = default;
-            attacker.SetControls(_container.Resolve<Controls>());
-            attacker.SetCoroutineService(_container.Resolve<CoroutineService>());
-            attacker.SetBulletDealer(_container.Resolve<BulletDealer>());
+            Attacker attacker = _container.InstantiatePrefabForComponent<Attacker>(prefab.gameObject, hand);
             attacker.SetAttackScheme(attackScheme);
             return attacker;
         }
