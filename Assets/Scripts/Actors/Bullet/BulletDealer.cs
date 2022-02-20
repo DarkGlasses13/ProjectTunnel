@@ -49,6 +49,7 @@ namespace Assets.Scripts
             bullet.gameObject.SetActive(false);
             bullet.transform.SetParent(_bulletParent);
             bullet.transform.localPosition = default;
+            bullet.transform.localRotation = default;
             bullet.ClearTrail();
         }
 
