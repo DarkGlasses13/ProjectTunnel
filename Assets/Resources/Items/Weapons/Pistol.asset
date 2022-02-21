@@ -19,6 +19,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: a509e83ec51064a46b29cc7be6e0cfb2, type: 3}
   _prefab: {fileID: -7941700331522477368, guid: 9011a0a90df2b4746ad864be49d29208, type: 3}
   _damage: 10
+  _attackAnimationOverride: {fileID: 22100000, guid: 9c83ba87277d8ff4c934c120d1472425, type: 2}
   _capacity: 5
   _reloaringTime: 2
   _bullet: {fileID: 3938568067295194219, guid: f0d2503666667eb46bafe4e8010838d4, type: 3}

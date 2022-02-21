@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18125a980631944fb7143befb4d8e50, type: 3}
   m_Name: CharacterConfig
   m_EditorClassIdentifier: 
-  _equipedWeapon: {fileID: 11400000, guid: fda023df1ef898b4d834386f65a25e96, type: 2}
+  _equipedWeapon: {fileID: 11400000, guid: 5face2130b2cf5e4e98d05f1febfd1b1, type: 2}
   _equipedArmor: {fileID: 0}
