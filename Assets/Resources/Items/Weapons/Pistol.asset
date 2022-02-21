@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84016b457abdda49a39028d6b63ef3a, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  _id: 1
+  _id: 0
   _title: "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442"
   _price: 3000
   _description: 
