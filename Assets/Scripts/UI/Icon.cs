@@ -7,8 +7,17 @@ namespace Assets.Scripts
 {
     public class Icon : MonoBehaviour, IPointerClickHandler
     {
-        public Action OnClick;
+        private Weapon _iconWeapon;
 
-        void IPointerClickHandler.OnPointerClick(PointerEventData eventData) => OnClick?.Invoke();
+        public Action<Weapon> OnClick;
+
+        public void SettingIcon(Weapon weapon)
+        {
+            _iconWeapon = weapon;
+
+            Image image = GetComponent<Image>();
+            image.sprite = _iconWeapon.Icon;
+        }
+        void IPointerClickHandler.OnPointerClick(PointerEventData eventData) => OnClick?.Invoke(_iconWeapon);
     }
 }

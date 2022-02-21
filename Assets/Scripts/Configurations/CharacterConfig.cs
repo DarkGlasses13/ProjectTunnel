@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -10,5 +11,10 @@ namespace Assets.Scripts
 
         public Weapon EquipedWeapon => _equipedWeapon;
         public Armor EquipedArmor => _equipedArmor;
+
+        public void SetEquipedWeapon(Weapon weapon)
+        {
+            _equipedWeapon = weapon;
+        }
     }
 }
