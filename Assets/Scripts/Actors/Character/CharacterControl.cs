@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(CharacterController))]
-    public class ControlableMover : MonoBehaviour
+    public class CharacterControl : MonoBehaviour
     {
+        public event Action OnMove;
+
         [SerializeField] [Range(1, 10)] private float _moveSpeed;
+        [SerializeField] [Range(1, 10)] private float _rotationSpeed;
 
         private UpdateService _updateCacher;
         private Controls _controls;
@@ -26,13 +30,25 @@ namespace Assets.Scripts
             _controls.Character.Motion.performed += callbackContext => SetMotion();
             _controls.Character.Motion.canceled += callbackContext => ResetMotion();
             _updateCacher.OnFixedUpdate += Move;
+            EnableLookMotion();
         }
+
+        public void EnableLookMotion() => OnMove += LookMotion;
+
+        private void LookMotion()
+        {
+            Quaternion lookDirection = Quaternion.LookRotation(_motion);
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookDirection, _rotationSpeed * Time.fixedDeltaTime);
+        }
+
+        public void Look(Vector3 direction) => transform.LookAt(direction);
 
         private void Move()
         {
             if (_motion != Vector3.zero)
             {
                 _characterController.Move(_motion * Time.fixedDeltaTime);
+                OnMove.Invoke();
             }
         }
 
@@ -45,10 +61,13 @@ namespace Assets.Scripts
 
         private void ResetMotion() => _motion = Vector3.zero;
 
+        public void DisableLookMotion() => OnMove -= LookMotion;
+
         private void OnDisable()
         {
             _controls.Disable();
             _updateCacher.OnFixedUpdate -= Move;
+            DisableLookMotion();
         }
     }
 }

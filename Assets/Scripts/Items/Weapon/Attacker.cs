@@ -24,5 +24,7 @@ namespace Assets.Scripts
             _attackScheme = attackScheme;
             _attackScheme?.Apply(this);
         }
+
+        private void OnDisable() => _attackScheme?.Cancel(this);
     }
 }

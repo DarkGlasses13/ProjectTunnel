@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8120186592733105082}
   - component: {fileID: -158558126890990068}
-  - component: {fileID: 5815205593844562631}
+  - component: {fileID: 2080199634993756503}
   m_Layer: 0
   m_Name: Uzi
   m_TagString: Untagged
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c5446efed93fc4fa6fb7e88881124c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5815205593844562631
+--- !u!114 &2080199634993756503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5630647267853164355}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd3623567eee1624e869897a11f9e5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 559c95a2c14947c4e906cebc8963dc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8845823617095073272
