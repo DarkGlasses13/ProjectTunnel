@@ -29,10 +29,14 @@ namespace Assets.Scripts
         private void OnEnable()
         {
             _controls.Enable();
+
             _controls.Character.Motion.performed += callbackContext => SetMotion();
             _controls.Character.Motion.canceled += callbackContext => ResetMotion();
+
+            _controls.Character.Attack.started += callbackContext => EnableRotate();
             _controls.Character.Attack.performed += callbackContext => SetAngle();
-            _controls.Character.Attack.canceled += callbackContext => ResetRotate();
+            _controls.Character.Attack.canceled += callbackContext => DisableRotate();
+
             _updateCacher.OnFixedUpdate += Move;
             _updateCacher.OnFixedUpdate += Rotate;
             EnableLookMotion();
@@ -67,8 +71,6 @@ namespace Assets.Scripts
         {
             if (_look != Vector3.zero)
             {
-                EnableLookRotation();
-                DisableLookMotion();
                 OnRotate?.Invoke();
             }
         }
@@ -87,11 +89,15 @@ namespace Assets.Scripts
         }
 
         private void ResetMotion() => _motion = Vector3.zero;
-        void ResetRotate()
+        void EnableRotate()
+        {
+            EnableLookRotation();
+            DisableLookMotion();
+        }
+        void DisableRotate()
         {
             EnableLookMotion();
             DisableLookRotation();
-            _look = Vector3.zero;
         }
 
         public void DisableLookMotion() => OnMove -= LookMotion;
