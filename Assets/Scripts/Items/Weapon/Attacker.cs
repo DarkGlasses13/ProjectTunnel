@@ -17,7 +17,6 @@ namespace Assets.Scripts
             CoroutineService = coroutineService;
             BulletDealer = bulletDealer;
         }
-
         public void SetAttackScheme(IWeaponAttackScheme attackScheme)
         {
             _attackScheme?.Cancel(this);
