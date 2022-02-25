@@ -2116,6 +2116,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ReidStartup
       objectReference: {fileID: 0}
+    - target: {fileID: 7627950158952503194, guid: ec01fcfb5ba4b3b439cf9c73572c32ee, type: 3}
+      propertyPath: _monoInstallers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627950158952503194, guid: ec01fcfb5ba4b3b439cf9c73572c32ee, type: 3}
+      propertyPath: _monoInstallers.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7627950158952503195, guid: ec01fcfb5ba4b3b439cf9c73572c32ee, type: 3}
       propertyPath: m_RootOrder
       value: 0
