@@ -23,8 +23,7 @@ namespace Assets.Scripts
         private void BindCharacterFactory()
         {
             Container
-                .BindFactory<Character, CharacterConfig, Transform, Vector3, Character, CharacterFactory>()
-                .FromFactory<AdvancedCharacterFactory>();
+                .BindFactory<Character, CharacterConfig, Transform, Vector3, Character, AdvancedCharacterFactory>();
         }
 
         private void BindBulletDealerFactory()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -16,16 +17,21 @@ namespace Assets.Scripts
         private UpdateService _updateCacher;
         private Controls _controls;
         private CharacterController _characterController;
+        private Light _flashlight;
         private Vector3 _motion;
         private Vector3 _look;
 
         [Inject] private void Construct(Controls controls, UpdateService updateCacher)
         {
             _controls = controls;
-            _characterController = GetComponent<CharacterController>();
             _updateCacher = updateCacher;
+            Init();
         }
-
+        void Init()
+        {
+            _characterController = GetComponent<CharacterController>();
+            _flashlight = GetComponentInChildren<Light>();
+        }
         private void OnEnable()
         {
             _controls.Enable();
@@ -43,6 +49,7 @@ namespace Assets.Scripts
         }
 
         public void EnableLookMotion() => OnMove += LookMotion;
+        public void EnableLookAttack() => OnRotate += LookToAttack;
         public void EnableLookRotation() => OnRotate += Turn;
 
         private void LookMotion()
@@ -50,11 +57,15 @@ namespace Assets.Scripts
             Quaternion moveDirection = Quaternion.LookRotation(_motion);
             transform.rotation = Quaternion.Lerp(transform.rotation, moveDirection, _rotationSpeed * Time.fixedDeltaTime);
         }
+        private void LookToAttack()
+        {
+            transform.rotation = Quaternion.LookRotation(_look);
+        }
 
         void Turn()
         {
             Quaternion lookDirection = Quaternion.LookRotation(_look);
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookDirection, _rotationSpeed * Time.fixedDeltaTime);
+            _flashlight.transform.rotation = lookDirection;
         }
 
         public void Look(Vector3 direction) => transform.LookAt(direction);
@@ -73,6 +84,7 @@ namespace Assets.Scripts
             {
                 OnRotate?.Invoke();
             }
+            _flashlight.transform.rotation = Quaternion.Lerp(_flashlight.transform.rotation, transform.rotation, _rotationSpeed * Time.fixedDeltaTime);
         }
         private void SetMotion()
         {
@@ -89,18 +101,33 @@ namespace Assets.Scripts
         }
 
         private void ResetMotion() => _motion = Vector3.zero;
+        public void EnableAttack()
+        {
+            EnableLookAttack();
+            DisableLookMotion();
+        }
+        public void DisableAttack()
+        {
+            EnableLookMotion();
+            DisableLookAttack();
+            _look = Vector3.zero;
+        }
         void EnableRotate()
         {
             EnableLookRotation();
-            DisableLookMotion();
         }
         void DisableRotate()
         {
-            EnableLookMotion();
             DisableLookRotation();
+            StartCoroutine(AttackRotine());
         }
-
+        private IEnumerator AttackRotine()
+        {
+            yield return new WaitForSeconds(0.2f);
+            DisableAttack();
+        }
         public void DisableLookMotion() => OnMove -= LookMotion;
+        public void DisableLookAttack() => OnRotate -= LookToAttack;
         public void DisableLookRotation() => OnRotate -= Turn;
 
         private void OnDisable()

@@ -24,12 +24,12 @@ namespace Assets.Scripts
         [SerializeField] private PlayerCamera _playerCameraPrefab;
 
         private BulletDeallerFactory _bulletDealerFactory;
-        private CharacterFactory _characterFactory;
+        private AdvancedCharacterFactory _characterFactory;
         private PlayerCameraFactory _playerCameraFactory;
 
         private Character _character;
 
-        [Inject] private void Construct(BulletDeallerFactory bulletDeallerFactory, CharacterFactory characterFactory, PlayerCameraFactory playerCameraFactory)
+        [Inject] private void Construct(BulletDeallerFactory bulletDeallerFactory, AdvancedCharacterFactory characterFactory, PlayerCameraFactory playerCameraFactory)
         {
             _bulletDealerFactory = bulletDeallerFactory;
             _characterFactory = characterFactory;

@@ -3,13 +3,13 @@ using Zenject;
 
 namespace Assets.Scripts
 {
-    public class AdvancedCharacterFactory : IFactory<Character, CharacterConfig, Transform, Vector3, Character>
+    public class AdvancedCharacterFactory : PlaceholderFactory<Character, CharacterConfig, Transform, Vector3, Character>, IFactory<Character, CharacterConfig, Transform, Vector3, Character>
     {
         private DiContainer _container;
 
         public AdvancedCharacterFactory(DiContainer container) => _container = container;
 
-        public Character Create(Character prefab, CharacterConfig config, Transform parent, Vector3 position)
+        new public Character Create(Character prefab, CharacterConfig config, Transform parent, Vector3 position)
         {
             Character character =
                 GetSpawnedInstance(prefab, parent, position);
