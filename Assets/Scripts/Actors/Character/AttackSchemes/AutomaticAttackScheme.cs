@@ -6,7 +6,7 @@ namespace Assets.Scripts
     public class AutomaticAttackScheme : FirearmAttackSceme<Automatic>, IWeaponAttackScheme
     {
         private Coroutine _automaticRoutine;
-        private const float _attackDelay = 0.5f;
+        private const float AttackDelay = 0.5f;
 
         public AutomaticAttackScheme(Automatic weaponData) : base(weaponData) { }
 
@@ -34,7 +34,7 @@ namespace Assets.Scripts
 
         private IEnumerator AutomaticRoutine()
         {
-            yield return new WaitForSeconds(_attackDelay);
+            yield return new WaitForSeconds(AttackDelay);
             _attacker.CharacterControl.DisableLookMotion();
             _attacker.UpdateService.OnFixedUpdate += _attacker.CharacterControl.Rotate;
 

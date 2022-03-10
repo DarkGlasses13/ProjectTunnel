@@ -24,23 +24,34 @@ namespace Assets.Scripts
         private void OnEnable()
         {
             _controls.Enable();
+            _controls.Character.Aim.started += CallbackContext => EnableAimLine();
             _controls.Character.Aim.performed += CallbackContext => SetDirection();
             _controls.Character.Aim.canceled += CallbackContext => ResetDirection();
+            _controls.Character.Aim.canceled += CallbackContext => DisableAimLine();
             _updateService.OnFixedUpdate += RotateFlashlight;
+            _updateService.OnFixedUpdate += RotateAimLine;
         }
 
-        private void RotateFlashlight()
+        private void RotateAimLine() => Rotate(_aimLine.transform);
+
+        private void RotateFlashlight() => Rotate(_flashlight.transform);
+
+        private void Rotate(Transform rotatableObject)
         {
             if (_direction != Vector3.zero)
             {
-                _flashlight.transform.rotation = Quaternion
-                    .Lerp(_flashlight.transform.rotation, Quaternion.LookRotation(_direction), _aimSpeed * Time.fixedDeltaTime);
+                rotatableObject.rotation = Quaternion
+                    .Lerp(rotatableObject.rotation, Quaternion.LookRotation(_direction), _aimSpeed * Time.fixedDeltaTime);
                 return;
             }
 
-            _flashlight.transform.localRotation = Quaternion
-                .Lerp(_flashlight.transform.localRotation, Quaternion.identity, _aimSpeed * Time.fixedDeltaTime);
+            rotatableObject.localRotation = Quaternion
+                .Lerp(rotatableObject.localRotation, Quaternion.identity, _aimSpeed * Time.fixedDeltaTime);
         }
+
+        private void EnableAimLine() => _aimLine.gameObject.SetActive(true);
+
+        private void DisableAimLine() => _aimLine.gameObject.SetActive(false);
 
         private void SetDirection()
         {
@@ -55,6 +66,7 @@ namespace Assets.Scripts
         {
             _controls.Disable();
             _updateService.OnFixedUpdate -= RotateFlashlight;
+            _updateService.OnFixedUpdate -= RotateAimLine;
         }
     }
 }
