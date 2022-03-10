@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "Aim",
                     "type": "Value",
                     "id": "d43bb4fe-d5b6-4bbe-b6c0-659ed2f0c151",
                     "expectedControlType": "Vector2",
@@ -98,7 +98,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Attack",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

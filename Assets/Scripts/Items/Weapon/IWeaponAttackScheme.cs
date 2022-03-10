@@ -4,6 +4,6 @@
     {
         public void Apply(Attacker attacker);
         public void Attack();
-        public void Cancel(Attacker attacker);
+        public void Cancel();
     }
 }

@@ -8,24 +8,27 @@ namespace Assets.Scripts
         private IWeaponAttackScheme _attackScheme;
 
         public Controls Controls { get; private set; }
+        public UpdateService UpdateService { get; private set; }
         public CoroutineService CoroutineService { get; private set; }
         public BulletDealer BulletDealer { get; private set; }
-        public Aimer Aimer { get; private set; }
+        public CharacterControl CharacterControl { get; private set; }
 
-        [Inject] private void Construct(Controls controls, CoroutineService coroutineService, BulletDealer bulletDealer)
+        [Inject] private void Construct(Controls controls, UpdateService updateService, CoroutineService coroutineService, BulletDealer bulletDealer)
         {
             Controls = controls;
+            UpdateService = updateService;
             CoroutineService = coroutineService;
             BulletDealer = bulletDealer;
+            CharacterControl = GetComponentInParent<CharacterControl>();
         }
 
         public void SetAttackScheme(IWeaponAttackScheme attackScheme)
         {
-            _attackScheme?.Cancel(this);
+            _attackScheme?.Cancel();
             _attackScheme = attackScheme;
             _attackScheme?.Apply(this);
         }
 
-        private void OnDisable() => _attackScheme?.Cancel(this);
+        private void OnDisable() => _attackScheme?.Cancel();
     }
 }

@@ -39,7 +39,7 @@ namespace Assets.Scripts
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""Aim"",
                     ""type"": ""Value"",
                     ""id"": ""d43bb4fe-d5b6-4bbe-b6c0-659ed2f0c151"",
                     ""expectedControlType"": ""Vector2"",
@@ -122,7 +122,7 @@ namespace Assets.Scripts
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Attack"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -173,7 +173,7 @@ namespace Assets.Scripts
             // Character
             m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
             m_Character_Motion = m_Character.FindAction("Motion", throwIfNotFound: true);
-            m_Character_Attack = m_Character.FindAction("Attack", throwIfNotFound: true);
+            m_Character_Aim = m_Character.FindAction("Aim", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -234,13 +234,13 @@ namespace Assets.Scripts
         private readonly InputActionMap m_Character;
         private ICharacterActions m_CharacterActionsCallbackInterface;
         private readonly InputAction m_Character_Motion;
-        private readonly InputAction m_Character_Attack;
+        private readonly InputAction m_Character_Aim;
         public struct CharacterActions
         {
             private @Controls m_Wrapper;
             public CharacterActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Motion => m_Wrapper.m_Character_Motion;
-            public InputAction @Attack => m_Wrapper.m_Character_Attack;
+            public InputAction @Aim => m_Wrapper.m_Character_Aim;
             public InputActionMap Get() { return m_Wrapper.m_Character; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -253,9 +253,9 @@ namespace Assets.Scripts
                     @Motion.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMotion;
                     @Motion.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMotion;
                     @Motion.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMotion;
-                    @Attack.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAttack;
-                    @Attack.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAttack;
-                    @Attack.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAttack;
+                    @Aim.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAim;
+                    @Aim.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAim;
+                    @Aim.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAim;
                 }
                 m_Wrapper.m_CharacterActionsCallbackInterface = instance;
                 if (instance != null)
@@ -263,9 +263,9 @@ namespace Assets.Scripts
                     @Motion.started += instance.OnMotion;
                     @Motion.performed += instance.OnMotion;
                     @Motion.canceled += instance.OnMotion;
-                    @Attack.started += instance.OnAttack;
-                    @Attack.performed += instance.OnAttack;
-                    @Attack.canceled += instance.OnAttack;
+                    @Aim.started += instance.OnAim;
+                    @Aim.performed += instance.OnAim;
+                    @Aim.canceled += instance.OnAim;
                 }
             }
         }
@@ -300,7 +300,7 @@ namespace Assets.Scripts
         public interface ICharacterActions
         {
             void OnMotion(InputAction.CallbackContext context);
-            void OnAttack(InputAction.CallbackContext context);
+            void OnAim(InputAction.CallbackContext context);
         }
     }
 }

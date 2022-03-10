@@ -5,7 +5,6 @@ namespace Assets.Scripts
 {
     public class AutomaticAttackScheme : FirearmAttackSceme<Automatic>, IWeaponAttackScheme
     {
-        private CoroutineService _coroutineService;
         private Coroutine _automaticRoutine;
         private const float _attackDelay = 0.5f;
 
@@ -13,32 +12,31 @@ namespace Assets.Scripts
 
         void IWeaponAttackScheme.Apply(Attacker attacker)
         {
-            _coroutineService = attacker.CoroutineService;
-            attacker.Controls.Character.Attack.started += callbackContext => StartAttacking();
-            attacker.Controls.Character.Attack.canceled += callbackContext => StopAttacking();
-            _bulletDealer = attacker.BulletDealer;
-            _bulletDealer.InitPool(_weaponData.Bullet, attacker.transform);
-            _aimer = attacker.Aimer;
+            _attacker = attacker;
+            _attacker.Controls.Character.Aim.started += callbackContext => StartAttacking();
+            _attacker.Controls.Character.Aim.canceled += callbackContext => StopAttacking();
+            _attacker.BulletDealer.InitPool(_weaponData.Bullet, attacker.transform);
         }
 
         public void Attack()
         {
-            _bulletDealer.GetBullet();
+            _attacker.BulletDealer.GetBullet();
         }
 
-        private void StartAttacking()
-        {
-            _automaticRoutine = _coroutineService.StartRoutine(AutomaticRoutine());
-        }
+        private void StartAttacking() => _automaticRoutine = _attacker.CoroutineService.StartRoutine(AutomaticRoutine());
 
-        private void StopAttacking() 
+        private void StopAttacking()
         {
-            _coroutineService.StopRoutine(_automaticRoutine);
-        } 
+            _attacker.CoroutineService.StopRoutine(_automaticRoutine);
+            _attacker.UpdateService.OnFixedUpdate -= _attacker.CharacterControl.Rotate;
+            _attacker.CharacterControl.EnableLookMotion();
+        }
 
         private IEnumerator AutomaticRoutine()
         {
             yield return new WaitForSeconds(_attackDelay);
+            _attacker.CharacterControl.DisableLookMotion();
+            _attacker.UpdateService.OnFixedUpdate += _attacker.CharacterControl.Rotate;
 
             while (true)
             {
@@ -47,10 +45,10 @@ namespace Assets.Scripts
             }
         }
 
-        void IWeaponAttackScheme.Cancel(Attacker attacker)
+        void IWeaponAttackScheme.Cancel()
         {
-            attacker.Controls.Character.Attack.started -= callbackContext => StartAttacking();
-            attacker.Controls.Character.Attack.canceled -= callbackContext => StopAttacking();
+            _attacker.Controls.Character.Aim.started -= callbackContext => StartAttacking();
+            _attacker.Controls.Character.Aim.canceled -= callbackContext => StopAttacking();
         }
     }
 }

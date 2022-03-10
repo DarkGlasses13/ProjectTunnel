@@ -16,6 +16,8 @@ namespace Assets.Scripts
         private Controls _controls;
         private CharacterController _characterController;
         private Vector3 _motion;
+        private Quaternion _rotation;
+        private Quaternion _lastRotation;
 
         [Inject] private void Construct(Controls controls, UpdateService updateCacher)
         {
@@ -29,7 +31,9 @@ namespace Assets.Scripts
             _controls.Enable();
 
             _controls.Character.Motion.performed += callbackContext => SetMotion();
+            _controls.Character.Aim.performed += callbackContext => SetRotation();
             _controls.Character.Motion.canceled += callbackContext => ResetMotion();
+            _controls.Character.Aim.canceled += callbackContext => ResetRotation();
 
             EnableMove();
             EnableLookMotion();
@@ -45,11 +49,7 @@ namespace Assets.Scripts
 
         private void LookMotion() => Rotate(_motion, _rotationSpeed);
 
-        public void FastRotate(Vector3 direction)
-        {
-            if (direction != Vector3.zero)
-                transform.rotation = Quaternion.LookRotation(direction);
-        }
+        public void RotateFast() => transform.rotation = _lastRotation;
 
         public void Rotate(Vector3 direction, float rotationSpeed)
         {
@@ -60,6 +60,12 @@ namespace Assets.Scripts
             }
         }
 
+        public void Rotate()
+        {
+            transform.rotation = Quaternion
+                    .Lerp(transform.rotation, _rotation, _rotationSpeed * Time.fixedDeltaTime);
+        }
+
         private void Move()
         {
             if (_motion != Vector3.zero)
@@ -67,6 +73,19 @@ namespace Assets.Scripts
                 _characterController.Move(_motion * Time.fixedDeltaTime);
                 OnMove?.Invoke();
             }
+        }
+
+        private void SetRotation()
+        {
+            float rotationX = _controls.Character.Aim.ReadValue<Vector2>().x;
+            float rotationY = _controls.Character.Aim.ReadValue<Vector2>().y;
+            _rotation = Quaternion.LookRotation(new Vector3(rotationX, 0, rotationY));
+        }
+
+        private void ResetRotation()
+        {
+            _lastRotation = _rotation;
+            _rotation = Quaternion.identity;
         }
 
         private void SetMotion()

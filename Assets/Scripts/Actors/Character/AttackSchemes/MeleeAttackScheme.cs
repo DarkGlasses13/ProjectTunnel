@@ -16,7 +16,7 @@ namespace Assets.Scripts
             Debug.Log("Melee Attack !");
         }
 
-        void IWeaponAttackScheme.Cancel(Attacker attacker)
+        void IWeaponAttackScheme.Cancel()
         {
 
         }
