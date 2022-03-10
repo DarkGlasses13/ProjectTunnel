@@ -7,30 +7,34 @@ namespace Assets.Scripts
     {
         public SingleFireAttackScheme(Single weaponData) : base(weaponData) { }
 
-        private CallBackAttack callBack;
         private CoroutineService _coroutineService;
         private Coroutine _automaticRoutine;
-        void IWeaponAttackScheme.Apply(Attacker attacker, CallBackAttack cb)
+
+        void IWeaponAttackScheme.Apply(Attacker attacker)
         {
             _coroutineService = attacker.CoroutineService;
             attacker.Controls.Character.Attack.canceled += callbackContext => StartAttacking();
-            callBack = cb;
             _bulletDealer = attacker.BulletDealer;
             _bulletDealer.InitPool(_weaponData.Bullet, attacker.transform);
+            _aimer = attacker.Aimer;
         }
+
         private void StartAttacking()
         {
             _automaticRoutine = _coroutineService.StartRoutine(AutomaticRoutine());
-            callBack?.Invoke();
         }
+
         private void StopAttacking()
         {
             _coroutineService.StopRoutine(_automaticRoutine);
         }
+
         public void Attack()
         {
+            GameObject.FindObjectOfType<Aimer>().Aim(); // УБРАТЬ ЭТОТ ПОЗОР !!!
             _bulletDealer.GetBullet();
         }
+
         private IEnumerator AutomaticRoutine()
         {
             yield return new WaitForSeconds(0.1f);

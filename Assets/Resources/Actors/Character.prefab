@@ -40,9 +40,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 168430615458251811}
+  - component: {fileID: 772513805571414340}
   - component: {fileID: 970636284813641286}
   m_Layer: 0
-  m_Name: Light
+  m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,6 +63,18 @@ Transform:
   m_Father: {fileID: 6872634362931502936}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &772513805571414340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518550196336783599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c7d2b2d56880d45a8f60a3704f4b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!108 &970636284813641286
 Light:
   m_ObjectHideFlags: 0
@@ -253,6 +266,7 @@ GameObject:
   - component: {fileID: 6872634362931502934}
   - component: {fileID: 5188661254401948679}
   - component: {fileID: 8528316907169163425}
+  - component: {fileID: 1609605947779190261}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -361,6 +375,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hand: {fileID: 3362784973729585264}
+--- !u!114 &1609605947779190261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6872634362931502939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7985abc6291a681469c38c3cec80b4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aimSpeed: 9
+  _aimLine: {fileID: 7113862361675062779}
+  _flashlight: {fileID: 772513805571414340}
 --- !u!1 &6872634363363141433
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6399931220969467668}
+  - component: {fileID: 7113862361675062779}
   - component: {fileID: 3517068341967203779}
   m_Layer: 6
   m_Name: AimLine
@@ -473,6 +503,18 @@ Transform:
   m_Father: {fileID: 6872634362931502936}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7113862361675062779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8527023305638788323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb5fba5402eecf45a1907aa27964716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &3517068341967203779
 LineRenderer:
   m_ObjectHideFlags: 0

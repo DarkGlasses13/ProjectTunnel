@@ -3,7 +3,9 @@ using Zenject;
 
 namespace Assets.Scripts
 {
-    public class AdvancedCharacterFactory : PlaceholderFactory<Character, CharacterConfig, Transform, Vector3, Character>, IFactory<Character, CharacterConfig, Transform, Vector3, Character>
+    public class AdvancedCharacterFactory : 
+        PlaceholderFactory<Character, CharacterConfig, Transform, Vector3, Character>,
+        IFactory<Character, CharacterConfig, Transform, Vector3, Character>
     {
         private DiContainer _container;
 
@@ -22,6 +24,7 @@ namespace Assets.Scripts
         {
             Inventory inventory = character.GetComponent<Inventory>();
             inventory.EquipWeapon(config.EquipedWeapon.ID);
+            //inventory.EquipArmor();
         }
 
         private Character GetSpawnedInstance(Character prefab, Transform parent, Vector3 position)

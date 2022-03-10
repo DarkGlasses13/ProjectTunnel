@@ -7,19 +7,18 @@ namespace Assets.Scripts
     {
         private CoroutineService _coroutineService;
         private Coroutine _automaticRoutine;
-        private CallBackAttack callBack;
         private const float _attackDelay = 0.5f;
 
         public AutomaticAttackScheme(Automatic weaponData) : base(weaponData) { }
 
-        void IWeaponAttackScheme.Apply(Attacker attacker, CallBackAttack cb)
+        void IWeaponAttackScheme.Apply(Attacker attacker)
         {
             _coroutineService = attacker.CoroutineService;
             attacker.Controls.Character.Attack.started += callbackContext => StartAttacking();
             attacker.Controls.Character.Attack.canceled += callbackContext => StopAttacking();
-            callBack = cb;
             _bulletDealer = attacker.BulletDealer;
             _bulletDealer.InitPool(_weaponData.Bullet, attacker.transform);
+            _aimer = attacker.Aimer;
         }
 
         public void Attack()
@@ -30,7 +29,6 @@ namespace Assets.Scripts
         private void StartAttacking()
         {
             _automaticRoutine = _coroutineService.StartRoutine(AutomaticRoutine());
-            callBack?.Invoke();
         }
 
         private void StopAttacking() 

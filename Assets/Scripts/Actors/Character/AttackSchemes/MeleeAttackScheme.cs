@@ -6,7 +6,7 @@ namespace Assets.Scripts
     {
         public MeleeAttackScheme(Melee weaponData) : base(weaponData) { }
 
-        void IWeaponAttackScheme.Apply(Attacker attacker, CallBackAttack cb)
+        void IWeaponAttackScheme.Apply(Attacker attacker)
         {
 
         }

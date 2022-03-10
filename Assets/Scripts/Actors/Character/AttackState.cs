@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Attack : StateMachineBehaviour
+public class AttackState : StateMachineBehaviour
 {
     public static Action OnStartAttack;
     public static Action OnAttack;

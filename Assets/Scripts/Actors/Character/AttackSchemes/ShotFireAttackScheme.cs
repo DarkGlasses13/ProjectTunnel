@@ -7,33 +7,37 @@ namespace Assets.Scripts
     {
         public ShotFireAttackScheme(Shotgun weaponData) : base(weaponData) { }
 
-        private CallBackAttack callBack;
         private CoroutineService _coroutineService;
         private Coroutine _automaticRoutine;
-        void IWeaponAttackScheme.Apply(Attacker attacker, CallBackAttack cb)
+
+        void IWeaponAttackScheme.Apply(Attacker attacker)
         {
             _coroutineService = attacker.CoroutineService;
             attacker.Controls.Character.Attack.canceled += callbackContext => StartAttacking();
-            callBack = cb;
             _bulletDealer = attacker.BulletDealer;
             _bulletDealer.InitPool(_weaponData.Bullet, attacker.transform);
+            _aimer = attacker.Aimer;
         }
+
         private void StartAttacking()
         {
             _automaticRoutine = _coroutineService.StartRoutine(AutomaticRoutine());
-            callBack?.Invoke();
         }
+
         private void StopAttacking()
         {
             _coroutineService.StopRoutine(_automaticRoutine);
         }
+
         public void Attack()
         {
             float delta = _weaponData.SpreadAngle / _weaponData.BulletsPerShot;
             float correctiveAngle = delta / 2;
 
-            float startAngle = -_weaponData.SpreadAngle / 2;
+            float startAngle = ~_weaponData.SpreadAngle / 2;
             startAngle += correctiveAngle;
+
+            GameObject.FindObjectOfType<Aimer>().Aim(); // УБРАТЬ ЭТОТ ПОЗОР !!!
 
             for (int i = 0; i < _weaponData.BulletsPerShot; i++)
             {
@@ -41,12 +45,14 @@ namespace Assets.Scripts
                 startAngle += delta;
             }
         }
+
         private IEnumerator AutomaticRoutine()
         {
             yield return new WaitForSeconds(0.1f);
             Attack();
             StopAttacking();
         }
+
         void IWeaponAttackScheme.Cancel(Attacker attacker)
         {
             attacker.Controls.Character.Attack.canceled -= callbackContext => Attack();
